@@ -4,18 +4,21 @@ require_relative "sevendays/world"
 require_relative "sevendays/player"
 
 module Sevendays
-	world = World.new.world
+	world = World.generate
 	player = Player.new world
 
-	puts player.report
+	until player.quit? do
+		puts player.report
+		choose do |menu|
+			menu.prompt = "Options:"
+			player.location.interactions(player).each do |interaction|
+				menu.choice(interaction.display_text) {interaction.execute}
+			end
 
-	choose do |menu|
-		menu.prompt = "Options:"
-		world.interactions(player).each do |interaction|
-			menu.choice(interaction.display_text) {interaction.execute}
+			player.interactions.each do |interaction|
+				menu.choice(interaction.display_text) {interaction.execute}
+			end
 		end
+		
 	end
-	
-	puts player.report
-
 end
