@@ -6,13 +6,9 @@ module Places
 		include Interactable
 		attr_reader :name, :locations
 
-		def initialize name, locations = []
+		def initialize name
 			@name = name
-			@locations = locations
-
-			@locations.map do |location|
-				has_interaction Interactions::MoveInteraction.new(self, location)
-			end
+			@locations = []
 		end
 
 		def add_connected_location location
