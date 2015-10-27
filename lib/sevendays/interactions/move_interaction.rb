@@ -7,7 +7,7 @@ module Interactions
 		end
 
 		def display_text
-			"Move to #{@to.name}"
+			"Travel to #{@to.name}"
 		end
 
 		def execute

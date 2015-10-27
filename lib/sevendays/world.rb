@@ -1,4 +1,6 @@
 require_relative "place"
+require_relative "supermarket"
+require_relative "nursery"
 
 module World
 
@@ -8,9 +10,7 @@ module World
 	end
 
 	def self.build_places
-		@places = {}
 		town_places = [
-			'Supermarket',
 			'Hardware Store',
 			'Carpark',
 			'Camping Goods',
@@ -23,7 +23,6 @@ module World
 			'Whitegoods Store',
 			'Office Building',
 			'Antiques Dealer',
-			'Garden Nursery',
 			'Cooking Instruments',
 			'Pharmacy',
 			'Park',
@@ -31,11 +30,11 @@ module World
 		]
 
 		town = Place.new('Town')
+		town.add_connected_location Supermarket.new
+		town.add_connected_location Nursery.new
 
 		town_places.each do |place_name|
 			place = Place.new(place_name)
-			@places[place_name] = place
-
 			town.add_connected_location place
 		end
 

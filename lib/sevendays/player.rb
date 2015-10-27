@@ -1,13 +1,15 @@
 require_relative "interactions/quit_interaction"
 require_relative "interactions/move_interaction"
 require_relative "interactions/move_return_interaction"
+require_relative "interactions/show_inventory_interaction"
 
 class Player
-	attr_accessor :money, :time_remaining
+	attr_accessor :money, :time_remaining, :inventory
 
 	def initialize starting_location
 		@location_stack = [starting_location]
-		@money = 0
+		@money = 10
+		@inventory = []
 	end
 
 	def report
@@ -30,16 +32,27 @@ class Player
 		@location_stack.pop
 	end
 
+	def can_afford cost
+		cost <= @money
+	end
+
+	def buy product, cost
+		@money -= cost
+		@inventory << product
+	end
+
 	def location
 		@location_stack.last
 	end
 
 	def interactions
-		@quit_interaction ||= Interactions::QuitInteraction.new self
+		@base_interactions ||= [
+			Interactions::QuitInteraction.new(self),
+			Interactions::ShowInventoryInteraction.new(self)
+		]
 
-		interactions = []
-		interactions << @quit_interaction
-		interactions << Interactions::MoveReturnInteraction.new(self) unless @location_stack.size <=1
+		interactions = @base_interactions
+		interactions +=[ Interactions::MoveReturnInteraction.new(self)] unless @location_stack.size <=1
 		interactions
 	end
 end
