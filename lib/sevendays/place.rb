@@ -1,4 +1,4 @@
-require_relative 'move_interaction'
+require_relative 'interactions/move_interaction'
 
 class Place
 	attr_reader :name, :locations
@@ -10,7 +10,7 @@ class Place
 
 	def interactions player
 		all = @locations.map do |location|
-			MoveInteraction.new(self, location, player)
+			Interactions::MoveInteraction.new(self, location, player)
 		end
 	end
 

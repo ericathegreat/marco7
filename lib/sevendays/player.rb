@@ -1,6 +1,6 @@
-require_relative "quit_interaction"
-require_relative "move_interaction"
-require_relative "move_return_interaction"
+require_relative "interactions/quit_interaction"
+require_relative "interactions/move_interaction"
+require_relative "interactions/move_return_interaction"
 
 class Player
 	attr_accessor :money, :time_remaining
@@ -35,11 +35,11 @@ class Player
 	end
 
 	def interactions
-		@quit_interaction ||= QuitInteraction.new self
+		@quit_interaction ||= Interactions::QuitInteraction.new self
 
 		interactions = []
 		interactions << @quit_interaction
-		interactions << MoveReturnInteraction.new(self) unless @location_stack.size <=1
+		interactions << Interactions::MoveReturnInteraction.new(self) unless @location_stack.size <=1
 		interactions
 	end
 end
