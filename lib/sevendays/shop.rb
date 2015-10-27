@@ -1,15 +1,11 @@
 require_relative 'interactions/buy_product_interaction'
 
+
 module Shop
+	include Interactable
 
 	def stocks (product)
-		(@shop_products ||= []) << product
-	end
-
-	def interactions(player)
-		buy = @shop_products.map do |product|
-			Interactions::BuyProductInteraction.new(player, product)
-		end
-		return buy + super(player)
+		#(@shop_products ||= []) << product
+		has_interaction Interactions::BuyProductInteraction.new(product)
 	end
 end

@@ -1,15 +1,13 @@
-module Interactions
-	class QuitInteraction
-		def initialize (player)
-			@player = player
-		end
+require_relative 'interaction_base'
 
-		def display_text
+module Interactions
+	class QuitInteraction < InteractionBase
+		def display_text player
 			'Quit'
 		end
 
-		def execute
-			@player.quit
+		def execute player
+			player.quit
 		end
 	end
 end

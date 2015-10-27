@@ -1,17 +1,18 @@
+require_relative 'interaction_base'
+
 module Interactions
-	class BuyProductInteraction
-		def initialize (player, product)
-			@player = player
+	class BuyProductInteraction < InteractionBase
+		def initialize (product)
 			@product = product
 		end
 
-		def display_text
+		def display_text player
 			"Buy #{@product.name}"
 		end
 
-		def execute
-			if(@player.can_afford @product.price)
-				@player.buy @product, @product.price
+		def execute player
+			if(player.can_afford @product.price)
+				player.buy @product, @product.price
 				puts "bought #{@product.name}"
 			else
 				puts "insufficient funds"

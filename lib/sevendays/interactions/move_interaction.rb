@@ -1,18 +1,19 @@
+require_relative 'interaction_base'
+
 module Interactions
-	class MoveInteraction
-		def initialize (from, to, player)
+	class MoveInteraction < InteractionBase
+		def initialize (from, to)
 			@from = from
 			@to = to
-			@player = player
 		end
 
-		def display_text
+		def display_text player
 			"Travel to #{@to.name}"
 		end
 
-		def execute
-			if(@player.location == @from)
-				@player.move_to @to
+		def execute player
+			if(player.location == @from)
+				player.move_to @to
 			end
 		end
 	end

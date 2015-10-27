@@ -12,11 +12,11 @@ module Sevendays
 		choose do |menu|
 			menu.prompt = "Options:"
 			player.location.interactions(player).each do |interaction|
-				menu.choice(interaction.display_text) {interaction.execute}
+				menu.choice(interaction.display_text player) {interaction.execute player}
 			end
 
-			player.interactions.each do |interaction|
-				menu.choice(interaction.display_text) {interaction.execute}
+			player.interactions(player).each do |interaction|
+				menu.choice(interaction.display_text player) {interaction.execute player}
 			end
 		end
 		
