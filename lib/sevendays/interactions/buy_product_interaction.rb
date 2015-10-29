@@ -7,7 +7,7 @@ module Interactions
 		end
 
 		def display_text player
-			"Buy #{@product.name}"
+			"Buy//#{@product.name}"
 		end
 
 		def execute player

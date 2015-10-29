@@ -8,7 +8,7 @@ module Interactions
 		end
 
 		def display_text player
-			"Travel to #{@to.name}"
+			"Travel to//#{@to.name}"
 		end
 
 		def execute player
