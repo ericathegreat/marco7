@@ -39,7 +39,6 @@ module Sevendays
 				puts player.report
 				
 				show_menu interactions, player
-				
 			end
 		end
 	end

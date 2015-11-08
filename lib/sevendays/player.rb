@@ -49,7 +49,7 @@ class Player
 
 	def buy product, cost
 		@money -= cost
-		@inventory << product
+		@inventory << product.item
 	end
 
 	def location
