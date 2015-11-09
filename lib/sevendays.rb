@@ -2,6 +2,7 @@ require 'highline/import'
 require_relative "sevendays/version"
 require_relative "sevendays/world"
 require_relative "sevendays/player"
+require_relative "sevendays/clock"
 require 'set'
 
 module Sevendays
@@ -24,6 +25,9 @@ module Sevendays
 		end
 
 		def show_menu (interactions, player, submenu_prefix = '')
+			if !submenu_prefix.empty? 
+				clear_screen
+			end
 			choose do |menu|
 				add_to_menu menu, interactions, player, submenu_prefix
 			end
@@ -32,14 +36,21 @@ module Sevendays
 		def play
 			world = World.generate
 			player = Player.new world
+			clock = Clock.new 24
 
 			until player.quit? do
 				interactions = player.location.interactions(player) + player.interactions(player)
-				
+
+				clear_screen				
 				puts player.report
+				puts clock.report
 				
 				show_menu interactions, player
 			end
+		end
+
+		def clear_screen
+			system('clear') or system('cls')
 		end
 	end
 

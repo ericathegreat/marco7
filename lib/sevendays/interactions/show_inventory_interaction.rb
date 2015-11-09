@@ -7,7 +7,9 @@ module Interactions
 		end
 
 		def execute player
+			system('clear') or system('cls')
 			puts player.inventory.inspect
+			gets
 		end
 	end
 end
