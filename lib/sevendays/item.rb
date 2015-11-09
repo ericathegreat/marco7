@@ -6,6 +6,6 @@ class Item
 	end
 
 	def self.new_from_product(product)
-		@name = product.name
+		self.new product.name
 	end
 end
