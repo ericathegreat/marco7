@@ -36,7 +36,7 @@ module Sevendays
 		def play
 			world = World.generate
 			player = Player.new world
-			clock = Clock.new 24
+			clock = Clock.instance
 
 			until player.quit? do
 				interactions = player.location.interactions(player) + player.interactions(player)

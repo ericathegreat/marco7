@@ -1,4 +1,5 @@
 require_relative 'interaction_base'
+require_relative '../clock'
 
 module Interactions
 	class MoveInteraction < InteractionBase
@@ -14,6 +15,7 @@ module Interactions
 		def execute player
 			if(player.location == @from)
 				player.move_to @to
+				Clock.instance.spend_time 60
 			end
 		end
 	end

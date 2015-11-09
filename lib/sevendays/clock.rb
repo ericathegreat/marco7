@@ -1,14 +1,24 @@
+require 'singleton'
+
 class Clock
-	def initialize (hours_to_doomsday)
-		@world_start_time  = 0 - (60 * hours_to_doomsday)
-		@accelerated_time = 0
+	include Singleton
+
+	INITIAL_MINUTES_TO_DOOMSDAY = (60*12)
+
+	def initialize
+		@world_start_time  = 0 - INITIAL_MINUTES_TO_DOOMSDAY
+		@spent_time = 0
 		@start_clock = Time.now.to_i
 
 		@minutes_per_second = 1 #game speed
 	end
 
 	def time_now
-		@world_start_time + @accelerated_time + (real_world_time_expired * @minutes_per_second)
+		@world_start_time + @spent_time + (real_world_time_expired * @minutes_per_second)
+	end
+
+	def spend_time minutes
+		@spent_time += minutes
 	end
 
 	def real_world_time_expired
