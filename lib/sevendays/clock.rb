@@ -10,11 +10,11 @@ class Clock
 		@spent_time = 0
 		@start_clock = Time.now.to_i
 
-		@minutes_per_second = 1 #game speed
+		@minutes_per_second = 0.5 #game speed
 	end
 
 	def time_now
-		@world_start_time + @spent_time + (real_world_time_expired * @minutes_per_second)
+		(@world_start_time + @spent_time + (real_world_time_expired * @minutes_per_second)).round
 	end
 
 	def spend_time minutes

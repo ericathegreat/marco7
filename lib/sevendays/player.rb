@@ -7,7 +7,7 @@ require_relative "interactable"
 class Player
 	include Interactable
 
-	attr_accessor :money, :time_remaining, :inventory
+	attr_accessor :money, :inventory, :location_stack
 
 	def initialize starting_location
 		@location_stack = [starting_location]
