@@ -21,10 +21,6 @@ module UI
 			Registries::ScreenRegistry.instance.register_screen 'Town', self
 		end
 
-		def click(x,y)
-			puts interactions_under(Point(x,y))
-		end
-
 	end
 end
 	
