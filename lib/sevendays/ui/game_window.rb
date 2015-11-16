@@ -1,5 +1,6 @@
 require 'gosu'
-require_relative 'screens'
+require_relative '../registries/screen_registry'
+require_relative 'town_screen'
 
 module UI
   class GameWindow < Gosu::Window
@@ -14,11 +15,6 @@ module UI
 
       @font = Gosu::Font.new 12
       self.caption = "Seven Days"
-
-
-
-      #move to initializer
-      TownScreen.new
     end
 
     def update
@@ -26,7 +22,7 @@ module UI
     end
 
     def draw
-      screen = Screens.instance.screen_for @player.location_stack
+      screen = ScreenRegistry.instance.screen_for @player.location_stack
       screen.draw
 
       @font.draw(@player.location.name, 0,0,0,4,4)

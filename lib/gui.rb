@@ -1,5 +1,5 @@
 require_relative 'sevendays/ui/game_window'
-require_relative 'sevendays/world'
+require_relative 'sevendays/registries/world'
 require_relative 'sevendays/player'
 require_relative 'sevendays/clock'
 

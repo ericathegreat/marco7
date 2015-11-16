@@ -1,8 +1,8 @@
 require 'highline/import'
 require_relative "sevendays/version"
-require_relative "sevendays/world"
 require_relative "sevendays/player"
 require_relative "sevendays/clock"
+require_relative "sevendays/initializer"
 require 'set'
 
 module Sevendays
@@ -34,7 +34,9 @@ module Sevendays
 		end
 
 		def play
-			world = World.generate
+			Initializer.instance.run
+
+			world = Registries::PlaceRegistry.instance.for_name('Town')
 			player = Player.new world
 			clock = Clock.instance
 

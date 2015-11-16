@@ -1,8 +1,7 @@
 require 'singleton'
-require_relative 'town_screen'
 
-module UI
-	class Screens
+module Registries
+	class ScreenRegistry
 		include Singleton
 
 		def initialize
