@@ -1,4 +1,4 @@
-require_relative "../initializer"
+require_relative "../../initializer"
 
 require_relative "../places/town"
 require_relative "../places/supermarket"

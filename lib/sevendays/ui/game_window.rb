@@ -22,7 +22,7 @@ module UI
     end
 
     def draw
-      screen = ScreenRegistry.instance.screen_for @player.location_stack
+      screen = Registries::ScreenRegistry.instance.screen_for @player.location_stack
       screen.draw
 
       @font.draw(@player.location.name, 0,0,0,4,4)

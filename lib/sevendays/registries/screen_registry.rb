@@ -16,6 +16,7 @@ module Registries
 		end
 
 		def register_screen location_name, screen
+			puts "Registered screen for #{location_name}"
 			@screens[location_name] = screen
 		end
 
