@@ -3,18 +3,19 @@ require_relative '../clock'
 
 module Interactions
 	class MoveInteraction < InteractionBase
-		def initialize (from, to)
+		def initialize (from, to, player)
+			super player
 			@from = from
 			@to = to
 		end
 
-		def display_text player
+		def display_text
 			"Travel to//#{@to.name}"
 		end
 
-		def execute player
-			if(player.location == @from)
-				player.move_to @to
+		def execute
+			if(@player.location == @from)
+				@player.move_to @to
 				Clock.instance.spend_time 60
 			end
 		end

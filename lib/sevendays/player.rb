@@ -2,10 +2,8 @@ require_relative "interactions/quit_interaction"
 require_relative "interactions/move_interaction"
 require_relative "interactions/move_return_interaction"
 require_relative "interactions/show_inventory_interaction"
-require_relative "interactable"
 
 class Player
-	include Interactable
 
 	attr_accessor :money, :inventory, :location_stack
 
@@ -13,10 +11,14 @@ class Player
 		@location_stack = [starting_location]
 		@money = 10
 		@inventory = []
+	end
 
-		has_interaction Interactions::QuitInteraction.new
-		has_interaction Interactions::ShowInventoryInteraction.new
-		has_interaction Interactions::MoveReturnInteraction.new
+	def interactions player
+		[
+			Interactions::QuitInteraction.new(player),
+			Interactions::ShowInventoryInteraction.new(player),
+			Interactions::MoveReturnInteraction.new(player)
+		]
 	end
 
 	def report

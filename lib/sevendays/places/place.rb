@@ -1,10 +1,8 @@
 require_relative '../interactions/move_interaction'
-require_relative '../interactable'
 require_relative '../registries/place_registry'
 
 module Places
 	class Place
-		include Interactable
 		attr_reader :name, :locations
 
 		def initialize name
@@ -14,7 +12,12 @@ module Places
 
 		def add_connected_location location
 			@locations << location
-			has_interaction Interactions::MoveInteraction.new(self, location)
+		end
+
+		def interactions player
+			@locations.map do |location|
+				Interactions::MoveInteraction.new(self, location, player)
+			end
 		end
 
 		def register

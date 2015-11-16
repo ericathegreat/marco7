@@ -6,11 +6,11 @@ module Interactions
 			@message = message
 		end
 
-		def display_text player
+		def display_text
 			@message
 		end
 
-		def execute player
+		def execute
 			puts @message
 		end
 	end
