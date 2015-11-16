@@ -12,4 +12,8 @@ class Product
 	def item
 		@item_class.new_from_product(self)
 	end
+
+	def interactions player
+		Interactions::BuyProductInteraction.new(self, player)
+	end
 end

@@ -15,9 +15,11 @@ module Places
 		end
 
 		def interactions player
-			@locations.map do |location|
-				Interactions::MoveInteraction.new(self, location, player)
-			end
+			Interactions::MoveInteraction.new(self, player)
+		end
+
+		def contents
+			@locations
 		end
 
 		def register

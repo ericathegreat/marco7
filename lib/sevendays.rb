@@ -41,7 +41,8 @@ module Sevendays
 			clock = Clock.instance
 
 			until player.quit? do
-				interactions = player.location.interactions(player) + player.interactions(player)
+				interactions = player.interactions(player) +
+					player.location.contents.map{ |i| i.interactions(player) }.flatten
 
 				clear_screen				
 				puts player.report

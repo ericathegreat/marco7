@@ -18,7 +18,8 @@ module UI
     end
 
     def update
-      @interactions = @player.location.interactions(@player) + @player.interactions(@player)
+      @interactions = @player.interactions(@player) +
+          @player.location.contents.map{ |i| i.interactions(@player) }.flatten
     end
 
     def draw

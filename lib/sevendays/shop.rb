@@ -9,10 +9,7 @@ module Shop
 		@shop_products ||= []
 	end
 
-	def interactions player
-		shop_products.map do |product|
-			Interactions::BuyProductInteraction.new(product, player)
-		end
-	end 
-
+	def contents
+		@shop_products
+	end
 end
