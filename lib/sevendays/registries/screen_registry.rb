@@ -20,5 +20,8 @@ module Registries
 			@screens[location_name] = screen
 		end
 
+		def associate_all
+			@screens.values.each { |s| s.associate }
+		end
 	end
 end
