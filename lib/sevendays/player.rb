@@ -38,11 +38,15 @@ class Player
 	end
 
 	def move_to new_location
+		location.leave
 		@location_stack.push new_location
+		location.arrive
 	end
 
 	def move_back
+		location.leave
 		@location_stack.pop
+		location.arrive
 	end
 
 	def can_afford cost

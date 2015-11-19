@@ -10,6 +10,7 @@ module Interactions
 			system('clear') or system('cls')
 			puts @player.inventory.inspect
 			gets
+
 		end
 	end
 end

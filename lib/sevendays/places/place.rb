@@ -25,5 +25,11 @@ module Places
 		def register
 			Registries::PlaceRegistry.instance.register self
 		end
+
+		def arrive
+		end
+
+		def leave
+		end
 	end
 end
