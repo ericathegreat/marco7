@@ -1,5 +1,5 @@
 require_relative '../interactions/move_interaction'
-require_relative '../registries/place_registry'
+require_relative '../registries/registry'
 
 module Places
 	class Place
@@ -23,7 +23,7 @@ module Places
 		end
 
 		def register
-			Registries::PlaceRegistry.instance.register self
+			Registries::Registry.instance.register_place self.name, self
 		end
 
 		def arrive

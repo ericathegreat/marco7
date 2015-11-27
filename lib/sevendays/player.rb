@@ -16,7 +16,7 @@ class Player
 	def interactions player
 		[
 			Interactions::QuitInteraction.new(player),
-			Interactions::ShowInventoryInteraction.new(player),
+			Interactions::ShowInventoryInteraction.new(player)
 			Interactions::MoveReturnInteraction.new(player)
 		]
 	end

@@ -1,5 +1,5 @@
 require 'aspector'
-require_relative '../registries/place_registry'
+require_relative '../registries/registry'
 
 module Disasters
 	class AsteroidHit < Aspector::Base
@@ -9,7 +9,7 @@ module Disasters
 
 		def self.disaster
 			puts "It's an asteroid hit!"
-			supermarket = Registries::PlaceRegistry.instance.for_name('Supermarket')
+			supermarket = Registries::Registry.instance.place('Supermarket')
 			puts supermarket
 			AsteroidHit.apply(supermarket)
 		end

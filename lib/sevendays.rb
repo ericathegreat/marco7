@@ -36,7 +36,7 @@ module Sevendays
 		def play
 			Initializer.instance.run
 
-			world = Registries::PlaceRegistry.instance.for_name('Town')
+			world = Registries::Registry.instance.place('Town')
 			player = Player.new world
 			clock = Clock.instance
 

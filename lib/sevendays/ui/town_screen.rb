@@ -1,7 +1,6 @@
 require 'gosu'
 require 'geometry'
-require_relative '../registries/screen_registry'
-require_relative '../registries/place_registry'
+require_relative '../registries/registry'
 require_relative 'image_map'
 
 module UI
@@ -13,7 +12,7 @@ module UI
 		end
 
 		def associate
-			@place = Registries::PlaceRegistry.instance.for_name('Town')
+			@place = Registries::Registry.instance.place('Town')
 			define_zone Geometry::Polygon.new([Point(0, 0), Point(100, 0), Point(100, 100), Point(0, 100)]), 
 				@place.contents[1]
 		end
@@ -23,7 +22,7 @@ module UI
 		end
 
 		def register
-			Registries::ScreenRegistry.instance.register_screen 'Town', self
+			Registries::Registry.instance.register_screen 'Town', self
 		end
 
 	end
