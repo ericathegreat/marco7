@@ -1,5 +1,5 @@
 require 'gosu'
-require_relative '../registries/registry'
+require_relative '../registry'
 require_relative 'town_screen'
 
 module UI
@@ -23,7 +23,7 @@ module UI
     end
 
     def draw
-      @screen = Registries::Registry.instance.screen @player.location.name
+      @screen = Registry.instance.screen @player.location.name
       @screen.draw
 
       @font.draw(@player.location.name, 0,0,0,4,4)

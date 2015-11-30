@@ -17,9 +17,9 @@ Initializer.instance.register do
 end
 
 Initializer.instance.associate do
-	town = Registries::Registry.instance.place('Town')
-	supermarket = Registries::Registry.instance.place('Supermarket')
-	nursery = Registries::Registry.instance.place('Garden Nursery')
+	town = Registry.instance.place('Town')
+	supermarket = Registry.instance.place('Supermarket')
+	nursery = Registry.instance.place('Garden Nursery')
 	town.add_connected_location supermarket
 	town.add_connected_location nursery
 end

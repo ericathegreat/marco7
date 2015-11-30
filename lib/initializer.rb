@@ -1,5 +1,5 @@
 require 'singleton'
-require_relative 'sevendays/registries/registry'
+require_relative 'sevendays/registry'
 
 class Initializer
 	include Singleton
@@ -15,7 +15,7 @@ class Initializer
 		@registrations.each { |r| r.call(self) }
 		@associations.each { |a| a.call(self) }
 
-		Registries::Registry.instance.screens.values.each { |s| s.associate }
+		Registry.instance.screens.values.each { |s| s.associate }
 	end
 
 	def register &block
