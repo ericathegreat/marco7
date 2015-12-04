@@ -2,7 +2,7 @@ require 'highline/import'
 require_relative "sevendays/version"
 require_relative "sevendays/player"
 require_relative "sevendays/clock"
-require_relative "initializer"
+require_relative "initialize"
 require 'set'
 
 module Sevendays
@@ -34,7 +34,7 @@ module Sevendays
 		end
 
 		def play
-			Initializer.instance.run
+			Initialize.instance.run
 
 			world = Registry.instance.place('Town')
 			player = Player.new world

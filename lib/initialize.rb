@@ -1,7 +1,7 @@
 require 'singleton'
 require_relative 'sevendays/registry'
 
-class Initializer
+class Initialize
 	include Singleton
 
 	def run
@@ -12,8 +12,9 @@ class Initializer
 			require file
 		end
 
-		@registrations.each { |r| r.call(self) }
-		@associations.each { |a| a.call(self) }
+		@registrations.each { |r| r.call }
+		@associations.each { |a| puts "calling #{a} with #{Registry.instance}"
+		a.call(Registry.instance) }
 
 		Registry.instance.screens.values.each { |s| s.associate }
 	end
@@ -26,6 +27,7 @@ class Initializer
 	def associate &block
 		@associations ||= Array.new
 		@associations << block
+		puts block.arity
 	end
 
 end

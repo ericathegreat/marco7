@@ -1,4 +1,4 @@
-require_relative 'initializer'
+require_relative 'initialize'
 require_relative 'sevendays/ui/game_window'
 require_relative 'sevendays/registry'
 require_relative 'sevendays/player'
@@ -16,6 +16,6 @@ module Sevendays
 		end
 	end
 
-	Initializer.instance.run
+	Initialize.instance.run
 	Gui.new.run
 end

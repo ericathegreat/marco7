@@ -1,4 +1,4 @@
-require_relative "../../initializer"
+require_relative "../initializer"
 
 require_relative "../places/town"
 require_relative "../places/supermarket"
@@ -6,20 +6,23 @@ require_relative "../places/nursery"
 
 require_relative "../ui/town_screen"
 
-Initializer.instance.register do
-	puts "Initializing Town"
+class TownInitializer < Initializer
 
-	Places::Town.new.register
-	Places::Supermarket.new.register
-	Places::Nursery.new.register
+	register do
+		puts "Initializing Town"
 
-	UI::TownScreen.new.register
-end
+		Places::Town.new.register
+		Places::Supermarket.new.register
+		Places::Nursery.new.register
 
-Initializer.instance.associate do
-	town = Registry.instance.place('Town')
-	supermarket = Registry.instance.place('Supermarket')
-	nursery = Registry.instance.place('Garden Nursery')
-	town.add_connected_location supermarket
-	town.add_connected_location nursery
+		UI::TownScreen.new.register
+	end
+
+	associate do |registry|
+		town = registry.place('Town')
+		supermarket = registry.place('Supermarket')
+		nursery = registry.place('Garden Nursery')
+		town.add_connected_location supermarket
+		town.add_connected_location nursery
+	end
 end
