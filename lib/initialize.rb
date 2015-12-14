@@ -12,9 +12,8 @@ class Initialize
 			require file
 		end
 
-		@registrations.each { |r| r.call }
-		@associations.each { |a| puts "calling #{a} with #{Registry.instance}"
-		a.call(Registry.instance) }
+		@registrations.each { |r| r.call(Registry.instance) }
+		@associations.each { |a| a.call(Registry.instance) }
 
 		Registry.instance.screens.values.each { |s| s.associate }
 	end
@@ -27,7 +26,6 @@ class Initialize
 	def associate &block
 		@associations ||= Array.new
 		@associations << block
-		puts block.arity
 	end
 
 end

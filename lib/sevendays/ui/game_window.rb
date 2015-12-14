@@ -23,7 +23,7 @@ module UI
     end
 
     def draw
-      @screen = Registry.instance.screen @player.location.name
+      @screen = Registry.instance.screen 'World' #@player.location.name
       @screen.draw
 
       @font.draw(@player.location.name, 0,0,0,4,4)
