@@ -8,10 +8,11 @@ module Sevendays
 	class Gui
 		def run
 			town = Registry.instance.place('Town')
-			player = Player.new town
+			player = Player.instance
+			player.move_to! town
 			clock = Clock.instance
 
-			window = UI::GameWindow.new town, player, clock
+			window = UI::GameWindow.new clock
 			window.show
 		end
 	end

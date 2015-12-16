@@ -1,16 +1,20 @@
+require 'singleton'
 require_relative "interactions/quit_interaction"
 require_relative "interactions/move_interaction"
 require_relative "interactions/move_return_interaction"
 require_relative "interactions/show_inventory_interaction"
 
 class Player
+	include Singleton
 
 	attr_accessor :money, :inventory, :location_stack
 
-	def initialize starting_location
-		@location_stack = [starting_location]
+	def initialize
+		@location_stack = []
 		@money = 10
 		@inventory = []
+		@world_space_r = 0
+		@world_space_c = 0
 	end
 
 	def interactions player
@@ -19,6 +23,20 @@ class Player
 			Interactions::ShowInventoryInteraction.new(player),
 			Interactions::MoveReturnInteraction.new(player)
 		]
+	end
+
+	def player_world_space= new_space
+		@world_space_r = new_space[0]
+		@world_space_c = new_space[1]
+	end
+
+	def player_world_space
+		return @world_space_r, @world_space_c
+	end
+
+	def player_world_space_move relative
+		@world_space_r += relative[0]
+		@world_space_c += relative[1]
 	end
 
 	def report
@@ -41,6 +59,10 @@ class Player
 		location.leave
 		@location_stack.push new_location
 		location.arrive
+	end
+
+	def move_to! new_location
+		@location_stack.push new_location
 	end
 
 	def move_back
