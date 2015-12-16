@@ -20,7 +20,9 @@ module Geography
 		def initialize
 			@wall_map = Hash.new
 			@ground_map = Array.new(WORLD_SIZE) { Array.new(WORLD_SIZE) }
-			cell_at(10,5).terrain_type = :water
+			cell_at(10,5).terrain_type = :dirt
+			cell_at(10,6).terrain_type = :dirt
+			cell_at(10,7).terrain_type = :dirt
 		end
 
 		def cell_at r, c

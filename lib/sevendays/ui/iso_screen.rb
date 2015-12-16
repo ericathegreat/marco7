@@ -3,10 +3,15 @@ require_relative '../registry'
 
 module UI
 	class IsoScreen
+
+		ROW_HEIGHT = 32
+		COLUMN_WIDTH = 64
+
 		def initialize
 			@tiles = {}
 			@tiles[:grass] = Gosu::Image.new('img/grass.png')
 			@tiles[:water] = Gosu::Image.new('img/water.png')
+			@tiles[:dirt] = Gosu::Image.new('img/dirt.png')
 		end
 
 		def associate
@@ -23,7 +28,7 @@ module UI
 
 		def draw_tile r, c
 			terrain = @place.cell_at(r, c).terrain_type
-			@tiles[terrain].draw( *screen_space(r,c) )
+			@tiles[terrain].draw( *world_to_screen(r,c) )
 			# if (r+c).odd?
 			# 	@tiles[terrain].draw(r*66, c*132, 0)
 			# else
@@ -31,16 +36,35 @@ module UI
 			# end
 		end
 
-		def screen_space r, c
-			row_height = 32
-			column_width = 64
+		def screen_center_px
+			return Player.instance.player_world_space
+		end
 
-			r_px = (r + c) * row_height
-			c_px = c * -column_width + r * (column_width)
+		def render_top_left
+			return Player.instance.player_world_space
+		end
 
-			r_origin, c_origin = Player.instance.player_world_space
+		def world_to_screen r_world, c_world
+			r_px_render = (r_world + c_world) * ROW_HEIGHT
+			c_px_render = (-c_world + r_world) * COLUMN_WIDTH
 
-			[c_px - c_origin + (GameWindow::WINDOW_WIDE/2), r_px - r_origin + GameWindow::WINDOW_HIGH/2, r+c]
+			r_origin, c_origin = render_top_left
+
+			[c_px_render - c_origin + GameWindow::WINDOW_WIDE/2, 
+				r_px_render - r_origin + GameWindow::WINDOW_HIGH/2, 
+				r_world+c_world]
+		end
+
+		def screen_to_world r_px_screen, c_px_screen
+			r_origin, c_origin = render_top_left
+			c_px_render = c_px_screen + c_origin - GameWindow::WINDOW_WIDE/2
+			r_px_render = r_px_screen + r_origin - GameWindow::WINDOW_HIGH/2
+
+			# (-c + r) = c_px / COLUMN_WIDTH
+			# (c + r) = r_px / ROW_HEIGHT
+			r = ((c_px_render / COLUMN_WIDTH) + (r_px_render / ROW_HEIGHT)) / 2
+			c = r_px_render / ROW_HEIGHT - r
+			[r, c]
 		end
 
 
@@ -58,8 +82,9 @@ module UI
 		end
 
 		def click x, y
-			r_origin, c_origin = Player.instance.player_world_space
-			Player.instance.player_world_space= [y - (GameWindow::WINDOW_WIDE/2) + r_origin, x - ( GameWindow::WINDOW_HIGH/2) + c_origin]
+			puts screen_to_world(y, x).inspect
+			#r_origin, c_origin = Player.instance.player_world_space
+			#Player.instance.player_world_space= [y - (GameWindow::WINDOW_WIDE/2) + r_origin, x - ( GameWindow::WINDOW_HIGH/2) + c_origin]
 		end
 	end
 end
