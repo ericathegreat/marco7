@@ -23,6 +23,11 @@ module Geography
 			cell_at(10,5).terrain_type = :dirt
 			cell_at(10,6).terrain_type = :dirt
 			cell_at(10,7).terrain_type = :dirt
+			cell_at(3,3).terrain_type = :water
+			cell_at(4,3).terrain_type = :water
+			cell_at(5,3).terrain_type = :water
+			cell_at(4,2).terrain_type = :water
+			cell_at(4,4).terrain_type = :water
 		end
 
 		def cell_at r, c

@@ -13,8 +13,8 @@ class Player
 		@location_stack = []
 		@money = 10
 		@inventory = []
-		@world_space_r = 0
-		@world_space_c = 0
+		@world_space_r = 10
+		@world_space_c = 10
 	end
 
 	def interactions player
