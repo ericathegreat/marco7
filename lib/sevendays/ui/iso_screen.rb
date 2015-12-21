@@ -38,7 +38,6 @@ module UI
 			return world_to_render(*Player.instance.player_world_space)
 		end
 
-
 		def world_to_render r_world, c_world
 			r_px_render = (r_world + c_world) * ROW_HEIGHT
 			c_px_render = (-c_world + r_world) * COLUMN_WIDTH
@@ -68,7 +67,6 @@ module UI
 			[r, c]
 		end
 
-
 		def key_hold id
 			case(id)
 				when Gosu::KbUp
@@ -84,8 +82,6 @@ module UI
 
 		def click x, y
 			puts screen_to_world(y, x).map{|a| a.round}.inspect
-			#r_origin, c_origin = Player.instance.player_world_space
-			#Player.instance.player_world_space= [y - (GameWindow::WINDOW_WIDE/2) + r_origin, x - ( GameWindow::WINDOW_HIGH/2) + c_origin]
 		end
 	end
 end
