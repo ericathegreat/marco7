@@ -9,7 +9,7 @@ module UI
 		MAX_LAYERS = 2
 
 		def associate
-			@place = Registry.instance.map('World')
+			@place = Registry.instance.map(:world)
 			@tiles = Registry.instance.sprites
 			@player = Registry.instance.sprite(:player)
 		end
@@ -67,16 +67,18 @@ module UI
 			[r, c]
 		end
 
-		def key_hold id
-			case(id)
-				when Gosu::KbUp
-					Player.instance.player_world_space_move [-0.1,0]
-				when Gosu::KbDown
-					Player.instance.player_world_space_move [0.1,0]
-				when Gosu::KbLeft
-					Player.instance.player_world_space_move [0, 0.1]
-				when Gosu::KbRight
-					Player.instance.player_world_space_move [0,-0.1]
+		def update
+			if Gosu.button_down?( Gosu::KbUp )
+				Player.instance.player_world_space_move [-0.05,-0.05]
+			end
+			if Gosu.button_down?( Gosu::KbDown )
+				Player.instance.player_world_space_move [0.05,0.05]
+			end
+			if Gosu.button_down?( Gosu::KbLeft )
+				Player.instance.player_world_space_move [-0.05, 0.05]
+			end
+			if Gosu.button_down?( Gosu::KbRight )
+				Player.instance.player_world_space_move [0.05,-0.05]
 			end
 		end
 

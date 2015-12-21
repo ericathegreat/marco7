@@ -9,8 +9,8 @@ class IsoInitializer < Initializer
 	register do |registry|
 		puts "Initializing IsoView"
 
-		registry.register_map 'World', Geography::WorldMap.new
-		registry.register_screen 'World', UI::IsoScreen.new
+		registry.register_map :world, Geography::WorldMap.new
+		registry.register_screen :world, UI::IsoScreen.new
 	end
 
 	associate do |registry|
