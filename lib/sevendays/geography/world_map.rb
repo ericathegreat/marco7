@@ -41,7 +41,7 @@ module Geography
 
 		def cell_at r, c
 			return OUT_OF_BOUNDS if (r < 0 || c < 0 || r >= WORLD_SIZE || c >= WORLD_SIZE)
-			@ground_map[r][c] ||= WorldCell.new
+			@ground_map[r][c] ||= WorldCell.new self
 		end
 
 		def wall_at r, c, direction

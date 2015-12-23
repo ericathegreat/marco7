@@ -1,4 +1,5 @@
 require 'singleton'
+require_relative 'registry'
 require_relative "interactions/quit_interaction"
 require_relative "interactions/move_interaction"
 require_relative "interactions/move_return_interaction"
@@ -15,6 +16,7 @@ class Player
 		@inventory = []
 		@world_space_r = 10
 		@world_space_c = 10
+		@world = Registry.instance.map(:world)
 	end
 
 	def interactions player
@@ -35,8 +37,13 @@ class Player
 	end
 
 	def player_world_space_move relative
-		@world_space_r += relative[0]
-		@world_space_c += relative[1]
+		new_position = [(@world_space_r + relative[0]), (@world_space_c + relative[1])]
+		target_cell = @world.cell_at( *(new_position.map(&:floor)) )
+		can_walk = target_cell.can_walk( *(new_position.map { |m| m.modulo(1)} ) )
+		if(can_walk)
+			@world_space_r += relative[0]
+			@world_space_c += relative[1]
+		end
 	end
 
 	def report
