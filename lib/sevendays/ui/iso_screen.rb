@@ -8,6 +8,10 @@ module UI
 		COLUMN_WIDTH = 64
 		MAX_LAYERS = 2
 
+		LAYER_GROUND = 0
+		LAYER_WALL = 1
+		LAYER_PLAYER = 2
+
 		def associate
 			@place = Registry.instance.map(:world)
 			@tiles = Registry.instance.sprites
@@ -26,7 +30,7 @@ module UI
 					draw_location (r_world_top_left.floor + r + c + 1), (c_world_top_left.floor + c - r)
 				end
 			end
-			@player.draw( *world_to_screen(*Player.instance.player_world_space, 2) )
+			@player.draw( *world_to_screen(*Player.instance.player_world_space, LAYER_PLAYER) )
 		end
 
 		def draw_location r, c
@@ -37,14 +41,14 @@ module UI
 
 		def draw_tile r, c
 			terrain = @place.cell_at(r, c).terrain_type
-			@tiles[terrain].draw( *world_to_screen(r, c, 0) )
+			@tiles[terrain].draw( *world_to_screen(r, c, LAYER_GROUND) )
 		end
 
 		def draw_wall r, c
 			[:west, :north].each do |orientation|
 				wall = @place.wall_at(r, c, orientation)
 				if (wall != nil)
-					@tiles[wall.wall_type].draw(*world_to_screen(r, c, 1), orientation)#, COLUMN_WIDTH, ROW_HEIGHT )
+					@tiles[wall.wall_type].draw(*world_to_screen(r, c, LAYER_WALL), orientation)#, COLUMN_WIDTH, ROW_HEIGHT )
 				end
 			end
 		end

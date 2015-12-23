@@ -35,6 +35,8 @@ module Geography
 			wall_add(3,7,:north).wall_type = :wall_basic
 			wall_add(4,7,:west).wall_type = :wall_basic
 			wall_add(3,8,:north).wall_type = :wall_basic
+			wall_add(4,8,:west).wall_type = :wall_basic
+			wall_add(4,9,:west).wall_type = :wall_basic
 		end
 
 		def cell_at r, c
