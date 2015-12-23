@@ -1,4 +1,5 @@
 require_relative './world_cell'
+require_relative './wall'
 
 module Geography
 	class WorldMap
@@ -28,6 +29,12 @@ module Geography
 			cell_at(5,3).terrain_type = :water
 			cell_at(4,2).terrain_type = :water
 			cell_at(4,4).terrain_type = :water
+			wall_add(1,7,:north).wall_type = :wall_basic
+			wall_add(2,7,:north).wall_type = :wall_basic
+			wall_add(3,7,:west).wall_type = :wall_basic
+			wall_add(3,7,:north).wall_type = :wall_basic
+			wall_add(4,7,:west).wall_type = :wall_basic
+			wall_add(3,8,:north).wall_type = :wall_basic
 		end
 
 		def cell_at r, c
@@ -35,5 +42,13 @@ module Geography
 			@ground_map[r][c] ||= WorldCell.new
 		end
 
+		def wall_at r, c, direction
+			return @wall_map["#{r},#{c},#{direction}"]
+		end
+
+		def wall_add r,c,direction
+			@wall_map["#{r},#{c},#{direction}"] = Wall.new
+			wall_at r,c,direction
+		end
 	end
 end

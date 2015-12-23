@@ -1,4 +1,5 @@
 require_relative '../registry.rb'
+require 'Gosu'
 
 module UI
 	class IsoSprite
@@ -14,5 +15,6 @@ module UI
 		def draw x_px, y_px, z
 			@image.draw(x_px - @offset_x_px, y_px - @offset_y_px, z)
 		end
+
 	end
 end

@@ -15,7 +15,7 @@ class TownInitializer < Initializer
 		Places::Supermarket.new.register
 		Places::Nursery.new.register
 
-		UI::TownScreen.new.register
+		# UI::TownScreen.new.register
 	end
 
 	associate do |registry|

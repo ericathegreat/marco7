@@ -22,16 +22,31 @@ module UI
 
 			(-1..@draw_columns).each do |r|
 				(-1..@draw_rows).each do |c|
-					draw_tile (r_world_top_left.floor + r + c), (c_world_top_left.floor + c - r)
-					draw_tile (r_world_top_left.floor + r + c + 1), (c_world_top_left.floor + c - r)
+					draw_location (r_world_top_left.floor + r + c), (c_world_top_left.floor + c - r)
+					draw_location (r_world_top_left.floor + r + c + 1), (c_world_top_left.floor + c - r)
 				end
 			end
-			@player.draw( *world_to_screen(*Player.instance.player_world_space, 1) )
+			@player.draw( *world_to_screen(*Player.instance.player_world_space, 2) )
 		end
+
+		def draw_location r, c
+			draw_tile r, c
+			draw_wall r, c
+		end
+
 
 		def draw_tile r, c
 			terrain = @place.cell_at(r, c).terrain_type
 			@tiles[terrain].draw( *world_to_screen(r, c, 0) )
+		end
+
+		def draw_wall r, c
+			[:west, :north].each do |orientation|
+				wall = @place.wall_at(r, c, orientation)
+				if (wall != nil)
+					@tiles[wall.wall_type].draw(*world_to_screen(r, c, 1), orientation)#, COLUMN_WIDTH, ROW_HEIGHT )
+				end
+			end
 		end
 
 		def render_center
@@ -41,7 +56,7 @@ module UI
 		def world_to_render r_world, c_world
 			r_px_render = (r_world + c_world) * ROW_HEIGHT
 			c_px_render = (-c_world + r_world) * COLUMN_WIDTH
-			[r_px_render, c_px_render, (c_world + r_world).ceil]
+			[r_px_render, c_px_render, (c_world + r_world)]
 		end
 
 		def world_to_screen r_world, c_world, layer
@@ -80,6 +95,7 @@ module UI
 			if Gosu.button_down?( Gosu::KbRight )
 				Player.instance.player_world_space_move [0.05,-0.05]
 			end
+
 		end
 
 		def click x, y
