@@ -4,6 +4,8 @@ module UI
 		ROW_HEIGHT = 32
 		COLUMN_WIDTH = 64
 		MAX_LAYERS = 2
+
+		WINDOW_PADDING = 1
 		
 		def render_center
 			return world_to_render(*Player.instance.player_world_space)
@@ -12,8 +14,8 @@ module UI
 		def for_each_tile_on_screen
 			r_world_top_left, c_world_top_left = screen_to_world(0, 0)
 
-			(-1..draw_columns).each do |r|
-				(-1..draw_rows).each do |c|
+			(-WINDOW_PADDING..draw_columns).each do |r|
+				(-WINDOW_PADDING..draw_rows).each do |c|
 					yield (r_world_top_left.floor + r + c), (c_world_top_left.floor + c - r)
 					yield (r_world_top_left.floor + r + c + 1), (c_world_top_left.floor + c - r)
 				end
@@ -21,11 +23,11 @@ module UI
 		end
 
 		def draw_columns
-			@draw_columns ||= (GameWindow::WINDOW_WIDE/COLUMN_WIDTH/2 + 1).ceil
+			@draw_columns ||= (GameWindow::WINDOW_WIDE/COLUMN_WIDTH/2 + WINDOW_PADDING).ceil
 		end
 
 		def draw_rows
-			@draw_rows ||= (GameWindow::WINDOW_HIGH/ROW_HEIGHT/2 + 1).ceil
+			@draw_rows ||= (GameWindow::WINDOW_HIGH/ROW_HEIGHT/2 + WINDOW_PADDING).ceil
 		end
 
 		def world_to_render r_world, c_world
