@@ -1,5 +1,5 @@
 require 'singleton'
-require_relative 'sevendays/registry'
+require_relative 'Marco/registry'
 
 class Initialize
 	include Singleton
@@ -7,7 +7,7 @@ class Initialize
 	def run
 		puts "Initializing"
 		
-		Dir["#{File.dirname(__FILE__)}/sevendays/initializers/*.rb"].each do |file| 
+		Dir["#{File.dirname(__FILE__)}/Marco/initializers/*.rb"].each do |file| 
 			puts "required #{file}"
 			require file
 		end

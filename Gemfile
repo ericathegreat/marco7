@@ -1,4 +1,4 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in sevendays.gemspec
+# Specify your gem's dependencies in Marco.gemspec
 gemspec

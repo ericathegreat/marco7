@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative '../../lib/sevendays/geography/world_map'
+require_relative '../../lib/Marco/geography/world_map'
 
 module Geography
 	describe WorldMap do

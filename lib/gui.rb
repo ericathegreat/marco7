@@ -1,10 +1,10 @@
 require_relative 'initialize'
-require_relative 'sevendays/ui/game_window'
-require_relative 'sevendays/registry'
-require_relative 'sevendays/player'
-require_relative 'sevendays/clock'
+require_relative 'marco/ui/game_window'
+require_relative 'marco/registry'
+require_relative 'marco/player'
+require_relative 'marco/clock'
 
-module Sevendays
+module Marco
 	class Gui
 		def run
 			player = Player.instance

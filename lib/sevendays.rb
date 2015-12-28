@@ -1,11 +1,11 @@
 require 'highline/import'
-require_relative "sevendays/version"
-require_relative "sevendays/player"
-require_relative "sevendays/clock"
+require_relative "Marco/version"
+require_relative "Marco/player"
+require_relative "Marco/clock"
 require_relative "initialize"
 require 'set'
 
-module Sevendays
+module Marco
 	class Game
 		def add_to_menu menu, interactions, submenu_prefix = ''
 			merge_list = Set.new
