@@ -1,11 +1,12 @@
 require_relative './world_cell'
+require_relative './locked_cell'
 require_relative './wall'
 
 module Geography
 	class WorldMap
 
 		WORLD_SIZE = 1024
-		OUT_OF_BOUNDS = WorldCell.new(terrain_type: :water)
+		OUT_OF_BOUNDS = LockedCell.new(self, terrain_type: :water)
 
 		#      r          c
 		#      0          0
