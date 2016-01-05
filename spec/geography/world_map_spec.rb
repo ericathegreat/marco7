@@ -27,5 +27,18 @@ module Geography
 				expect(@world.cell_at(5,1024)).to equal WorldMap::OUT_OF_BOUNDS
 			end
 		end
+
+		describe 'walls_around' do
+			it 'should return all cardinal directions with walls' do
+				@world = WorldMap.new
+				@world.wall_add(100,100,:north).wall_type = :wall_basic
+				@world.wall_add(100,100,:west).wall_type = :wall_basic
+				@world.wall_add(100,101,:north).wall_type = :wall_basic
+				@world.wall_add(101,100,:west).wall_type = :wall_basic
+
+				expect(@world.walls_around(100,100)).to eq [:north, :east, :south, :west]
+			end
+		end
+
 	end
 end

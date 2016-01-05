@@ -7,6 +7,7 @@ module Geography
 
 		WORLD_SIZE = 1024
 		OUT_OF_BOUNDS = LockedCell.new(self, terrain_type: :water)
+		WALL_WALK_PADDING = 0.4
 
 		#      r          c
 		#      0          0
@@ -47,6 +48,28 @@ module Geography
 
 		def wall_at r, c, direction
 			return @wall_map["#{r},#{c},#{direction}"]
+		end
+
+		def walls_around r, c
+			return [
+				(@wall_map["#{r},#{c},north"] ? :north : nil),
+				(@wall_map["#{r+1},#{c},west"] ? :east : nil),
+				(@wall_map["#{r},#{c+1},north"] ? :south : nil),
+				(@wall_map["#{r},#{c},west"] ? :west : nil)
+			].compact
+		end
+
+		def can_walk r_precise, c_precise
+			position_within_tile = [ r_precise.modulo(1), c_precise.modulo(1) ]
+			position_of_tile = [ r_precise.floor, c_precise.floor ]
+			return false unless cell_at(*position_of_tile).can_walk( *position_within_tile )
+
+			surrounding_walls = walls_around(r_precise.floor, c_precise.floor)
+			return false if surrounding_walls.include?(:north) && position_within_tile[0] <= WALL_WALK_PADDING
+			return false if surrounding_walls.include?(:south) && position_within_tile[0] >=  (1-WALL_WALK_PADDING)
+			return false if surrounding_walls.include?(:west) && position_within_tile[1] <= WALL_WALK_PADDING
+			return false if surrounding_walls.include?(:east) && position_within_tile[1] <= (1-WALL_WALK_PADDING)
+			true
 		end
 
 		def wall_add r,c,direction

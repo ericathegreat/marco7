@@ -38,8 +38,7 @@ class Player
 
 	def player_world_space_move relative
 		new_position = [(@world_space_r + relative[0]), (@world_space_c + relative[1])]
-		target_cell = @world.cell_at( *(new_position.map(&:floor)) )
-		can_walk = target_cell.can_walk( *(new_position.map { |m| m.modulo(1)} ) )
+		can_walk =@world.can_walk( *new_position )
 		if(can_walk)
 			@world_space_r += relative[0]
 			@world_space_c += relative[1]
