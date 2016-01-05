@@ -8,7 +8,7 @@ module UI
 
 		LAYER_GROUND = 0
 		# LAYER_WALL = 1
-		LAYER_PLAYER = 2
+		LAYER_PLAYER = 0
 
 		def associate
 			@place = Registry.instance.map(:world)
