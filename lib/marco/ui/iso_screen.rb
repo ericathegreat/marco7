@@ -7,7 +7,6 @@ module UI
 		include IsoSpace
 
 		LAYER_GROUND = 0
-		# LAYER_WALL = 1
 		LAYER_PLAYER = 0
 
 		def associate
@@ -26,7 +25,7 @@ module UI
 
 		def draw_tile r, c
 			terrain = @place.cell_at(r, c).terrain_type
-			@tiles[terrain].draw( *world_to_screen(r, c, LAYER_GROUND) )
+			@tiles[terrain].draw( *world_to_screen(r, c, LAYER_GROUND), @place.cell_at(r,c) )
 		end
 
 		def update
@@ -45,7 +44,9 @@ module UI
 		end
 
 		def click x, y
-			puts screen_to_world(y, x).map{|a| a.round}.inspect
+			world_space = screen_to_world(y, x).map{|a| a.round}
+			puts world_space.inspect
+			puts @place.cell_at(*world_space).neighbours_of_type(:grass)
 		end
 	end
 end

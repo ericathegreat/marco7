@@ -11,7 +11,7 @@ module UI
 			Registry.instance.register_sprite(label, self)
 		end
 
-		def draw x_px, y_px, z
+		def draw x_px, y_px, z, world_entity = nil
 			@image.draw(x_px - @offset_x_px, y_px - @offset_y_px, z)
 		end
 

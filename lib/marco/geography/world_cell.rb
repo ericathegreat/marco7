@@ -1,10 +1,20 @@
+require_relative 'cell_neighbourhood'
+
 module Geography
 	class WorldCell
 
-		def initialize world, params={}
+		BLOCKING_TERRAINS = [:water, :wall_basic]
+		def initialize world, r, c, params={}
 			@world = world
 			@terrain_type = params[:terrain_type] || :grass
 			@structures = []
+
+			@r = r
+			@c = c
+		end
+
+		def to_s
+			puts "[#{@r}, #{@c}] - #{@terrain_type}"
 		end
 
 		def structures
@@ -19,11 +29,24 @@ module Geography
 			@terrain_type = value
 		end
 
-		def can_walk r, c
-			if @terrain_type == :water
-				return false
+		def neighbours
+			cells = []
+			((@r-1)..(@r+1)).each do |r|
+				((@c-1)..(@c+1)).each do |c|
+					if !(r == @r && c == @c)
+						cells << @world.cell_at(r, c)
+					end
+				end
 			end
-			true
+			cells
+		end
+
+		def neighbours_of_type terrain_type
+			neighbours.select { |x| x.terrain_type == terrain_type}
+		end
+
+		def can_walk r, c
+			return !BLOCKING_TERRAINS.include?(@terrain_type)
 		end
 	end
 end
