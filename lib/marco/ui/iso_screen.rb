@@ -46,7 +46,7 @@ module UI
 		def click x, y
 			world_space = screen_to_world(y, x).map{|a| a.round}
 			puts world_space.inspect
-			puts @place.cell_at(*world_space).neighbours_of_type(:grass)
+			puts @place.cell_at(*world_space).neighbours.select_by_type!(:water).ensw
 		end
 	end
 end

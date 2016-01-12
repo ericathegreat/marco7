@@ -14,6 +14,7 @@ class IsoInitializer < Initializer
 	end
 
 	associate do |registry|
-		#nothing
+		world = registry.map :world
+		world.set_to_demo_world
 	end
 end

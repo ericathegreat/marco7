@@ -18,25 +18,23 @@ module Geography
 		#     3 4        4 3
 		#      4          4
 
-		def initialize
+		def initialize rows = WORLD_SIZE, columns = WORLD_SIZE
 			@out_of_bounds = LockedCell.new(self, -1, -1, terrain_type: :water)
 
 			@wall_map = Hash.new
 			@ground_map = Array.new(WORLD_SIZE) { Array.new(WORLD_SIZE) }
+		end
+
+		def set_to_demo_world
 			cell_at(10,5).terrain_type = :dirt
 			cell_at(10,6).terrain_type = :dirt
 			cell_at(10,7).terrain_type = :dirt
 			cell_at(3,3).terrain_type = :water
 			cell_at(4,3).terrain_type = :water
 			cell_at(5,3).terrain_type = :water
-			cell_at(4,2).terrain_type = :water
+			cell_at(3,4).terrain_type = :water
 			cell_at(4,4).terrain_type = :water
-			cell_at(7,6).terrain_type = :wall_basic
-			cell_at(7,7).terrain_type = :wall_basic
-			cell_at(7,8).terrain_type = :wall_basic
-			cell_at(7,9).terrain_type = :wall_basic
-			cell_at(8,9).terrain_type = :wall_basic
-			cell_at(6,9).terrain_type = :wall_basic
+			cell_at(5,4).terrain_type = :water
 		end
 
 		def cell_at r, c

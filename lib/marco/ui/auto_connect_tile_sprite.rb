@@ -20,18 +20,13 @@ module UI
 		end
 
 		def draw x_px, y_px, z, world_entity = nil
-			if (world_entity != nil)
-				neighbours = world_entity.neighbours_of_type @tile_type
-				draw_as = ''
-				draw_as << 'e' if neighbours.include?(:east)
-				draw_as << 'n' if neighbours.include?(:north)
-				draw_as << 's' if neighbours.include?(:south)
-				draw_as << 'w' if neighbours.include?(:west)
+			if (nil != world_entity)
+				neighbours = world_entity.neighbours.select_by_type!(@tile_type)
+				draw_as = neighbours.ensw
 				if draw_as == ""
 					@images[:o].draw(x_px - @offset_x_px, y_px - @offset_y_px, z)
 				else
 					@images[draw_as.to_sym].draw(x_px - @offset_x_px, y_px - @offset_y_px, z)
-					puts draw_as
 				end
 			else
 				@images[:o].draw(x_px - @offset_x_px, y_px - @offset_y_px, z)

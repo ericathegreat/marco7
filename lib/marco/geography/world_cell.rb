@@ -1,4 +1,4 @@
-require_relative 'cell_neighbourhood'
+require_relative 'neighbours'
 
 module Geography
 	class WorldCell
@@ -29,20 +29,30 @@ module Geography
 			@terrain_type = value
 		end
 
-		def neighbours
-			cells = []
-			((@r-1)..(@r+1)).each do |r|
-				((@c-1)..(@c+1)).each do |c|
-					if !(r == @r && c == @c)
-						cells << @world.cell_at(r, c)
-					end
-				end
-			end
-			cells
+		def row
+			@r
 		end
 
-		def neighbours_of_type terrain_type
-			neighbours.select { |x| x.terrain_type == terrain_type}
+		def column
+			@c
+		end
+
+		def state
+			[@r, @c, @terrain_type]
+		end
+
+		def == (o)
+			o.respond_to? state && o.state = state
+		end
+		
+		alias_method :eql?, :==
+
+		def hash
+			state.hash
+		end
+
+		def neighbours
+			return Neighbours.new(@r, @c, @world)
 		end
 
 		def can_walk r, c

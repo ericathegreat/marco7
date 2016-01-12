@@ -5,7 +5,7 @@ module Geography
 		end
 
 		def neighbours
-			[]
+			return Neighbours.new(-1,-1, @world)
 		end
 	end
 end
