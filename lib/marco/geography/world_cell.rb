@@ -29,6 +29,10 @@ module Geography
 			@terrain_type = value
 		end
 
+		def render_state
+			@render_state ||= Hash.new
+		end
+
 		def row
 			@r
 		end
