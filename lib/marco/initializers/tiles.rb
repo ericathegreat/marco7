@@ -1,7 +1,7 @@
 require_relative "../initializer"
 require_relative "../ui/base_sprite"
 require_relative "../ui/sprites/auto_connect_sprite_group"
-require_relative "../ui/sprites/sparkle_sprite"
+require_relative "../ui/sprites/sparkle"
 
 class Tiles < Initializer
 
@@ -11,6 +11,8 @@ class Tiles < Initializer
 		UI::BaseSprite.new :dirt, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/dirt.png', tileable: true)]
 		UI::BaseSprite.new :player, offset_x_px: 32, offset_y_px: 96, images: [Gosu::Image.new('img/penguin.png')]
 		UI::BaseSprite.new :wall_basic, offset_x_px: 64, offset_y_px: 64, images: [Gosu::Image.new('img/wall_basic.png', tileable: true)]
+
+		UI::BaseSprite.new :out_of_bounds, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/water/ensw.png', tileable: true)]
 
 		UI::Sprites::AutoConnectSpriteGroup.new :water,
 		 	o: UI::BaseSprite.new( :anonymous, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/water/o.png', tileable: true)]), 
@@ -27,11 +29,11 @@ class Tiles < Initializer
 		 	esw: UI::BaseSprite.new( :anonymous, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/water/esw.png', tileable: true)]), 
 		 	s: UI::BaseSprite.new( :anonymous, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/water/o.png', tileable: true)]), 
 		 	sw: UI::BaseSprite.new( :anonymous, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/water/sw.png', tileable: true)]), 
-		 	ensw: UI::Sprites::SparkleSprite.new(:water_sparkle, offset_x_px: 64, offset_y_px: 32, images: [
+		 	ensw: UI::BaseSprite.new(:water_sparkle, offset_x_px: 64, offset_y_px: 32, images: [
 		 			Gosu::Image.new('img/water/ensw.png', tileable: true),
 		 			Gosu::Image.new('img/water/ensw-alt1.png', tileable: true),
 		 			Gosu::Image.new('img/water/ensw-alt2.png', tileable: true),
 		 			Gosu::Image.new('img/water/ensw-alt3.png', tileable: true),
-		 	])
+		 	], extensions: [ UI::Sprites::Sparkle ] )
 	end
 end
