@@ -11,6 +11,7 @@ class Tiles < Initializer
 		UI::BaseSprite.new :dirt, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/dirt.png', tileable: true)]
 		UI::BaseSprite.new :player, offset_x_px: 32, offset_y_px: 96, images: [Gosu::Image.new('img/penguin.png')]
 		UI::BaseSprite.new :wall_basic, offset_x_px: 64, offset_y_px: 64, images: [Gosu::Image.new('img/wall_basic.png', tileable: true)]
+		UI::BaseSprite.new :grass_blades, offset_x_px: 64, offset_y_px: 64, images: [Gosu::Image.new('img/grass_blades.png')]
 
 		UI::BaseSprite.new :out_of_bounds, offset_x_px: 64, offset_y_px: 32, images: [Gosu::Image.new('img/water/ensw.png', tileable: true)]
 

@@ -26,6 +26,9 @@ module UI
 		def draw_tile r, c
 			terrain = @place.cell_at(r, c).terrain_type
 			@tiles[terrain].draw( *world_to_screen(r, c, LAYER_GROUND), @place.cell_at(r,c) )
+			@place.cell_at(r, c).structures.each do | structure |
+				@tiles[structure].draw( *world_to_screen(r, c, LAYER_GROUND), @place.cell_at(r,c) )
+			end
 		end
 
 		def update
