@@ -35,6 +35,9 @@ module Geography
 			cell_at(3,4).terrain_type = :water
 			cell_at(4,4).terrain_type = :water
 			cell_at(5,4).terrain_type = :water
+			cell_at(3,5).terrain_type = :water
+			cell_at(4,5).terrain_type = :water
+			cell_at(5,5).terrain_type = :water
 		end
 
 		def cell_at r, c
