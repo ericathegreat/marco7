@@ -38,7 +38,7 @@ class Player
 
 	def player_world_space_move relative
 		new_position = [(@world_space_r + relative[0]), (@world_space_c + relative[1])]
-		can_walk =@world.can_walk( *new_position )
+		can_walk = @world.can_walk( *new_position )
 		if(can_walk)
 			@world_space_r += relative[0]
 			@world_space_c += relative[1]

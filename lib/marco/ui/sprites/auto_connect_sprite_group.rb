@@ -12,8 +12,6 @@ module UI
 				@sprites = Hash[ TILE_TYPES.collect do |tile_type|
 					[tile_type , params[tile_type]]
 				end]
-
-				Registry.instance.register_sprite(label, self)
 			end
 
 			def draw x_px, y_px, z, world_entity = nil

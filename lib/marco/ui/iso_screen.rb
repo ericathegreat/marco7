@@ -6,8 +6,9 @@ module UI
 	class IsoScreen
 		include IsoSpace
 
-		LAYER_GROUND = 0
-		LAYER_PLAYER = 0
+		LAYER_GROUND 		= 0
+		LAYER_STRUCTURE = 2
+		LAYER_PLAYER 		= 4
 
 		def associate
 			@place = Registry.instance.map(:world)
@@ -27,7 +28,7 @@ module UI
 			terrain = @place.cell_at(r, c).terrain_type
 			@tiles[terrain].draw( *world_to_screen(r, c, LAYER_GROUND), @place.cell_at(r,c) )
 			@place.cell_at(r, c).structures.each do | structure |
-				@tiles[structure].draw( *world_to_screen(r, c, LAYER_GROUND), @place.cell_at(r,c) )
+				@tiles[structure].draw( *world_to_screen(r, c, LAYER_STRUCTURE), @place.cell_at(r,c) )
 			end
 		end
 
@@ -49,7 +50,7 @@ module UI
 		def click x, y
 			world_space = screen_to_world(y, x).map{|a| a.round}
 			puts world_space.inspect
-			puts @place.cell_at(*world_space).neighbours.select_by_type!(:water).ensw
+			puts Player.instance.player_world_space.inspect
 		end
 	end
 end

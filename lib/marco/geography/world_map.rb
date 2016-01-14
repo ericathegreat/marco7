@@ -64,7 +64,7 @@ module Geography
 
 		def can_walk r_precise, c_precise
 			position_within_tile = [ r_precise.modulo(1), c_precise.modulo(1) ]
-			position_of_tile = [ r_precise.floor, c_precise.floor ]
+			position_of_tile = [ r_precise.round, c_precise.round ]
 			return cell_at(*position_of_tile).can_walk( *position_within_tile )
 		end
 
