@@ -30,4 +30,4 @@ class Tiles < Initializer
 
 		r.register_sprite :water, water_auto_sprite
 	end
-end
+end	

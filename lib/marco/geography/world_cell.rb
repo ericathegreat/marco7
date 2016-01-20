@@ -60,7 +60,7 @@ module Geography
 		end
 
 		def can_walk r, c
-			return !BLOCKING_TERRAINS.include?(@terrain_type)
+			@can_walk ||= !BLOCKING_TERRAINS.include?(@terrain_type)
 		end
 	end
 end
