@@ -3,7 +3,7 @@ require_relative 'neighbours'
 module Geography
 	class WorldCell
 
-		BLOCKING_TERRAINS = [:water, :wall_basic]
+		BLOCKING_TERRAINS = [:water, :wall_basic, :out_of_bounds]
 		def initialize world, r, c, params={}
 			@world = world
 			@terrain_type = params[:terrain_type] || :grass

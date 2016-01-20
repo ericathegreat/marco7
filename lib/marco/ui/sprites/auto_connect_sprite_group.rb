@@ -1,4 +1,5 @@
 require_relative '../../registry.rb'
+require_relative 'base_sprite'
 require 'Gosu'
 
 module UI
@@ -6,12 +7,32 @@ module UI
 		class AutoConnectSpriteGroup
 			TILE_TYPES = [ :o, :n, :en, :ns, :nw, :ens, :enw, :nsw, :e, :es, :ew, :esw, :s, :sw, :ensw ]
 
-			def initialize label, params
-				@tile_type = label
+			def initialize link_to_terrain, sprites
+				@sprites = sprites
+				@tile_type = link_to_terrain
+			end
 
-				@sprites = Hash[ TILE_TYPES.collect do |tile_type|
-					[tile_type , params[tile_type]]
-				end]
+			def self.smart_initialize name, relative_path, offset_x, offset_y
+				UI::Sprites::AutoConnectSpriteGroup.new :water,
+			 	o: BaseSprite.new("#{relative_path}o.png", offset_x, offset_y, true),
+			 	n: BaseSprite.new("#{relative_path}o.png", offset_x, offset_y, true),
+			 	en: BaseSprite.new("#{relative_path}en.png", offset_x, offset_y, true), 
+			 	ns: BaseSprite.new("#{relative_path}o.png", offset_x, offset_y, true), 
+			 	nw: BaseSprite.new("#{relative_path}nw.png", offset_x, offset_y, true),
+			 	ens: BaseSprite.new("#{relative_path}ens.png", offset_x, offset_y, true), 
+			 	enw: BaseSprite.new("#{relative_path}enw.png", offset_x, offset_y, true), 
+			 	nsw: BaseSprite.new("#{relative_path}nsw.png", offset_x, offset_y, true), 
+			 	e: BaseSprite.new("#{relative_path}o.png", offset_x, offset_y, true), 
+			 	es: BaseSprite.new("#{relative_path}es.png", offset_x, offset_y, true), 
+			 	ew: BaseSprite.new("#{relative_path}o.png", offset_x, offset_y, true),
+			 	esw: BaseSprite.new("#{relative_path}esw.png", offset_x, offset_y, true), 
+			 	s: BaseSprite.new("#{relative_path}o.png", offset_x, offset_y, true), 
+			 	sw: BaseSprite.new("#{relative_path}sw.png", offset_x, offset_y, true), 
+			 	ensw: BaseSprite.new("#{relative_path}ensw.png", offset_x, offset_y, true)
+			end
+
+			def sprites
+				@sprites
 			end
 
 			def draw x_px, y_px, z, world_entity = nil
