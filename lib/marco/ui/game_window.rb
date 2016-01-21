@@ -27,6 +27,9 @@ module UI
       @screen = Registry.instance.screen :world
       @screen.draw
 
+      @hud = Registry.instance.screen :hud
+      @hud.draw
+
       # @font.draw(@clock.report, 300,0,1024,4,4)
       # @font.draw("$#{@player.money}", 930,0,1024,4,4)
     end

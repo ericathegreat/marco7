@@ -58,6 +58,10 @@ module Geography
 			cell_at(14,13).structures << :grass_blades
 			cell_at(10,6).structures << :grass_blades
 			cell_at(10,7).structures << :grass_blades
+			cell_at(10,12).structures << :pine_tree
+			cell_at(10,13).structures << :pine_tree
+			cell_at(10,14).structures << :pine_tree
+			cell_at(11,12).structures << :pine_tree
 		end
 
 		def cell_at r, c

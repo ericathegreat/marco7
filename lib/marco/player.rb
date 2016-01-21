@@ -8,12 +8,15 @@ require_relative "interactions/show_inventory_interaction"
 class Player
 	include Singleton
 
-	attr_accessor :money, :inventory, :location_stack
+	attr_accessor :money, :inventory, :inventory_max_size, :location_stack
 
 	def initialize
 		@location_stack = []
 		@money = 10
+
 		@inventory = []
+		@inventory_max_size = 5
+
 		@world_space_r = 10
 		@world_space_c = 10
 		@world = Registry.instance.map(:world)
