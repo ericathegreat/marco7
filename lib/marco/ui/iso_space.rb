@@ -32,7 +32,7 @@ module UI
 
 		def world_to_render r_world, c_world
 			r_px_render = (r_world + c_world) * ROW_HEIGHT
-			c_px_render = (-c_world + r_world) * COLUMN_WIDTH
+			c_px_render = (r_world - c_world) * COLUMN_WIDTH
 			[r_px_render, c_px_render, (c_world + r_world)]
 		end
 

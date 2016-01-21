@@ -35,17 +35,17 @@ module UI
 				@sprites
 			end
 
-			def draw x_px, y_px, z, world_entity = nil
+			def draw layer, world_entity
 				if (nil != world_entity)
 					neighbours = world_entity.neighbours.select_by_type!(@tile_type)
 					draw_as = neighbours.ensw
 					if draw_as == ""
-						@sprites[:o].draw(x_px, y_px, z, world_entity)
+						@sprites[:o].draw(layer, world_entity)
 					else
-						@sprites[draw_as.to_sym].draw(x_px, y_px, z, world_entity)
+						@sprites[draw_as.to_sym].draw(layer, world_entity)
 					end
 				else
-					@sprites[:o].draw(x_px, y_px, z, world_entity)
+					@sprites[:o].draw(layer, world_entity)
 				end
 			end
 

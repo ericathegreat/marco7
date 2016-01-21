@@ -12,8 +12,9 @@ module UI
       @player = Player.instance
       @clock = clock
 
-      @font = Gosu::Font.new 12
-      self.caption = "Seven Days"
+      # @font = Gosu::Font.new 12
+      @image = Gosu::Image.new('img/background.png', tileable: true)
+      self.caption = "Marco 7"
     end
 
     def update
@@ -22,11 +23,12 @@ module UI
     end
 
     def draw
+      @image.draw(0,0,0,WINDOW_WIDE, WINDOW_HIGH)
       @screen = Registry.instance.screen :world
       @screen.draw
 
-      @font.draw(@clock.report, 300,0,1024,4,4)
-      @font.draw("$#{@player.money}", 930,0,1024,4,4)
+      # @font.draw(@clock.report, 300,0,1024,4,4)
+      # @font.draw("$#{@player.money}", 930,0,1024,4,4)
     end
 
     def needs_cursor?

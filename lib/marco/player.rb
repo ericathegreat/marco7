@@ -36,6 +36,14 @@ class Player
 		return @world_space_r, @world_space_c
 	end
 
+	def r
+		@world_space_r
+	end
+
+	def c
+		@world_space_c
+	end
+
 	def player_world_space_move relative
 		new_position = [(@world_space_r + relative[0]), (@world_space_c + relative[1])]
 		can_walk = @world.can_walk( *new_position )

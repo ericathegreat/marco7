@@ -8,7 +8,7 @@ module UI
 
 		LAYER_GROUND 		= 0
 		LAYER_STRUCTURE = 2
-		LAYER_PLAYER 		= 4
+		LAYER_PLAYER 		= 2
 
 		def associate
 			@place = Registry.instance.map(:world)
@@ -21,14 +21,14 @@ module UI
 				draw_tile r, c
 			end
 
-			@player.draw( *world_to_screen(*Player.instance.player_world_space, LAYER_PLAYER) )
+			@player.draw( LAYER_PLAYER, Player.instance )
 		end
 
 		def draw_tile r, c
 			terrain = @place.cell_at(r, c).terrain_type
-			@tiles[terrain].draw( *world_to_screen(r, c, LAYER_GROUND), @place.cell_at(r,c) )
+			@tiles[terrain].draw( LAYER_GROUND, @place.cell_at(r,c) )
 			@place.cell_at(r, c).structures.each do | structure |
-				@tiles[structure].draw( *world_to_screen(r, c, LAYER_STRUCTURE), @place.cell_at(r,c) )
+				@tiles[structure].draw( LAYER_STRUCTURE, @place.cell_at(r,c) )
 			end
 		end
 

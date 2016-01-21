@@ -33,11 +33,11 @@ module Geography
 			@render_state ||= Hash.new
 		end
 
-		def row
+		def r
 			@r
 		end
 
-		def column
+		def c
 			@c
 		end
 

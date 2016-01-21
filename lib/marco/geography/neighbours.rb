@@ -42,7 +42,10 @@ module Geography
 		end
 
 		def select_by_type! terrain_type
-			@data.select! { |coordinate| @world.cell_at(*coordinate).terrain_type == terrain_type}
+			@data.select! do |coordinate| 
+				type = @world.cell_at(*coordinate).terrain_type 
+				type == terrain_type || type == :out_of_bounds
+			end
 			self
 		end
 

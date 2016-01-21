@@ -48,6 +48,9 @@ module Geography
 			cell_at(3,6).terrain_type = :water
 			cell_at(4,6).terrain_type = :water
 			cell_at(5,6).terrain_type = :water
+			cell_at(0,0).terrain_type = :water
+			cell_at(0,1).terrain_type = :water
+			cell_at(1,0).terrain_type = :water
 
 			cell_at(12,11).structures << :grass_blades
 			cell_at(12,12).structures << :grass_blades
