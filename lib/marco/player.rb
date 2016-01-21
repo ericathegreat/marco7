@@ -15,7 +15,7 @@ class Player
 		@money = 10
 
 		@inventory = []
-		@inventory_max_size = 5
+		@inventory_max_size = 9
 
 		@world_space_r = 10
 		@world_space_c = 10

@@ -14,7 +14,7 @@ module UI
 
 		def draw_inventory
 			@player.inventory_max_size.times do |i|
-				@inventory_background.screen_space_draw(100 + 100*i,100, @z)
+				@inventory_background.screen_space_draw(120 + 120*i,GameWindow::WINDOW_HIGH - 80, @z)
 			end
 		end
 	end
