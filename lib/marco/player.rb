@@ -1,8 +1,6 @@
 require 'singleton'
 require_relative 'registry'
 require_relative "interactions/quit_interaction"
-require_relative "interactions/move_interaction"
-require_relative "interactions/move_return_interaction"
 require_relative "interactions/show_inventory_interaction"
 
 class Player
@@ -11,7 +9,6 @@ class Player
 	attr_accessor :money, :inventory, :inventory_max_size, :location_stack
 
 	def initialize
-		@location_stack = []
 		@money = 10
 
 		@inventory = []
@@ -26,7 +23,6 @@ class Player
 		[
 			Interactions::QuitInteraction.new(player),
 			Interactions::ShowInventoryInteraction.new(player),
-			Interactions::MoveReturnInteraction.new(player)
 		]
 	end
 
@@ -68,26 +64,6 @@ class Player
 		@quit ||= false
 	end
 
-	def can_return?
-		@location_stack.size > 1
-	end
-
-	def move_to new_location
-		location.leave
-		@location_stack.push new_location
-		location.arrive
-	end
-
-	def move_to! new_location
-		@location_stack.push new_location
-	end
-
-	def move_back
-		location.leave
-		@location_stack.pop
-		location.arrive
-	end
-
 	def can_afford cost
 		cost <= @money
 	end
@@ -95,9 +71,5 @@ class Player
 	def buy product, cost
 		@money -= cost
 		@inventory << product.item
-	end
-
-	def location
-		@location_stack.last
 	end
 end

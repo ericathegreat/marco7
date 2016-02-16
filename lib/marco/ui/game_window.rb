@@ -1,6 +1,5 @@
 require 'gosu'
 require_relative '../registry'
-require_relative 'town_screen'
 
 module UI
   class GameWindow < Gosu::Window
@@ -12,7 +11,7 @@ module UI
       @player = Player.instance
       @clock = clock
 
-      # @font = Gosu::Font.new 12
+      @font = Gosu::Font.new 12
       @image = Gosu::Image.new('img/background.png', tileable: true)
       self.caption = "Marco 7"
     end
@@ -30,7 +29,7 @@ module UI
       @hud = Registry.instance.screen :hud
       @hud.draw
 
-      # @font.draw(@clock.report, 300,0,1024,4,4)
+      @font.draw(@clock.report, 500,0,1024,4,4)
       # @font.draw("$#{@player.money}", 930,0,1024,4,4)
     end
 

@@ -3,14 +3,12 @@ require 'singleton'
 class Clock
 	include Singleton
 
-	INITIAL_MINUTES_TO_DOOMSDAY = (60*12)
-
 	def initialize
-		@world_start_time  = 0 - INITIAL_MINUTES_TO_DOOMSDAY
+		@world_start_time  = (7*60) #7 am, day 0
 		@spent_time = 0
 		@start_clock = Time.now.to_i
 
-		@minutes_per_second = 0.5 #game speed
+		@minutes_per_second = 1 #game speed
 	end
 
 	def time_now
@@ -27,15 +25,14 @@ class Clock
 
 	def report
 		now = time_now
-		if (now < 0)
-			"#{to_human_time(0-now)} until doomsday"
-		else
-			"#{to_human_time(now)} since doomsday"
-		end
+		to_human_time(now)
 	end
 
 	def to_human_time(minutes)
-		"#{minutes} minutes"
+		days = (minutes/60/24).floor
+		hours = (minutes - days*24*60) / 60
+		minutes = (minutes - days*24*60 - hours*60)
+		"Day #{minutes/60/24}, #{hours}:#{'%02d' % minutes}"
 	end
 
 end
