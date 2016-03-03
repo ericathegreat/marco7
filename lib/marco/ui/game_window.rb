@@ -6,12 +6,10 @@ module UI
   	WINDOW_WIDE = 1200
   	WINDOW_HIGH = 900
 
-    def initialize clock
+    def initialize
       super WINDOW_WIDE, WINDOW_HIGH
       @player = Player.instance
-      @clock = clock
 
-      @font = Gosu::Font.new 12
       @image = Gosu::Image.new('img/background.png', tileable: true)
       self.caption = "Marco 7"
     end
@@ -28,9 +26,6 @@ module UI
 
       @hud = Registry.instance.screen :hud
       @hud.draw
-
-      @font.draw(@clock.report, 500,0,1024,4,4)
-      # @font.draw("$#{@player.money}", 930,0,1024,4,4)
     end
 
     def needs_cursor?
@@ -38,7 +33,11 @@ module UI
     end
 
     def button_up(id)
-      @screen.click(mouse_x, mouse_y) if ((id == Gosu::MsLeft) && @screen.respond_to?(:click))
+      if (id == Gosu::MsLeft)
+        @screen.click(mouse_x, mouse_y) if @screen.respond_to?(:click)
+      else
+        @screen.button_up(id) if @screen.respond_to?(:button_up)
+      end
     end
   end
 end

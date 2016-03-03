@@ -7,10 +7,7 @@ require_relative 'marco/clock'
 module Marco
 	class Gui
 		def run
-			player = Player.instance
-			clock = Clock.instance
-
-			window = UI::GameWindow.new clock
+			window = UI::GameWindow.new
 			window.show
 		end
 	end
