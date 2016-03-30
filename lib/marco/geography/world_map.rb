@@ -52,16 +52,16 @@ module Geography
 			cell_at(0,1).terrain_type = :water
 			cell_at(1,0).terrain_type = :water
 
-			cell_at(12,11).structures << :grass_blades
-			cell_at(12,12).structures << :grass_blades
-			cell_at(13,11).structures << :grass_blades
-			cell_at(14,13).structures << :grass_blades
-			cell_at(10,6).structures << :grass_blades
-			cell_at(10,7).structures << :grass_blades
-			cell_at(10,12).structures << :pine_tree
-			cell_at(10,13).structures << :pine_tree
-			cell_at(10,14).structures << :pine_tree
-			cell_at(11,12).structures << :pine_tree
+			# cell_at(12,11).structures << :grass_blades
+			# cell_at(12,12).structures << :grass_blades
+			# cell_at(13,11).structures << :grass_blades
+			# cell_at(14,13).structures << :grass_blades
+			# cell_at(10,6).structures << :grass_blades
+			# cell_at(10,7).structures << :grass_blades
+			cell_at(10,12).structures << Entities::SmallPine::SmallPine.new
+			cell_at(10,13).structures << Entities::SmallPine::SmallPine.new
+			cell_at(10,14).structures << Entities::SmallPine::SmallPine.new
+			cell_at(11,12).structures << Entities::SmallPine::SmallPine.new
 		end
 
 		def cell_at r, c

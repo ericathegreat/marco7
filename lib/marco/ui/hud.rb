@@ -16,11 +16,21 @@ module UI
 		def draw
 			draw_inventory
 			draw_clock
+			draw_interactions
 		end
 
 		def draw_inventory
 			@player.inventory_max_size.times do |i|
 				@inventory_background.screen_space_draw(120 + 120*i,GameWindow::WINDOW_HIGH - 80, @z)
+			end
+		end
+
+		def draw_interactions
+			if @player.interacting
+				@player.available_actions.each_with_index do | interaction, i |
+					puts @player.engaged_entity
+					@font.draw(interaction.display_text, 200, 50 * i, 1024, 2, 2)
+				end
 			end
 		end
 

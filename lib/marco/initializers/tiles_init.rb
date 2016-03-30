@@ -15,7 +15,6 @@ class TilesInitializer < Initializer
 		r.register_sprite :dirt, UI::Sprites::BaseSprite.new('dirt.png', 64, 45, true)
 		r.register_sprite :out_of_bounds, UI::Sprites::BaseSprite.new('water/ensw.png', 64, 45, true)
 		r.register_sprite :grass_blades, UI::Sprites::BaseSprite.new('grass_blades.png', 64, 108)
-		r.register_sprite :pine_tree, UI::Sprites::BaseSprite.new('pine_tree.png', 74, 195)
 
 		sparkle_water = UI::Sprites::SparkleGroup.new([
 			UI::Sprites::BaseSprite.new('water/ensw.png', 64, 45, true),

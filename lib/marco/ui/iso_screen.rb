@@ -28,7 +28,7 @@ module UI
 			terrain = @place.cell_at(r, c).terrain_type
 			@tiles[terrain].draw( LAYER_GROUND, @place.cell_at(r,c) )
 			@place.cell_at(r, c).structures.each do | structure |
-				@tiles[structure].draw( LAYER_STRUCTURE, @place.cell_at(r,c) )
+				@tiles[structure.to_sym].draw( LAYER_STRUCTURE, @place.cell_at(r,c) )
 			end
 		end
 
@@ -49,8 +49,9 @@ module UI
 
 		def click x, y
 			world_space = screen_to_world(y, x).map{|a| a.round}
-			puts world_space.inspect
-			puts Player.instance.player_world_space.inspect
+			# puts world_space.inspect
+			# puts Player.instance.player_world_space.inspect
+			Player.instance.engage_with(@place.cell_at(*world_space).structures.collect)
 		end
 	end
 end

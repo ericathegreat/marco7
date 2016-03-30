@@ -49,6 +49,12 @@ module Geography
 			self
 		end
 
+		def cells
+			@data.collect do |coordinate| 
+				@world.cell_at(*coordinate)
+			end
+		end
+
 		def west
 			[@r-1, @c]
 		end
