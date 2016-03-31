@@ -58,10 +58,10 @@ module Geography
 			# cell_at(14,13).structures << :grass_blades
 			# cell_at(10,6).structures << :grass_blades
 			# cell_at(10,7).structures << :grass_blades
-			cell_at(10,12).structures << Entities::SmallPine::SmallPine.new
-			cell_at(10,13).structures << Entities::SmallPine::SmallPine.new
-			cell_at(10,14).structures << Entities::SmallPine::SmallPine.new
-			cell_at(11,12).structures << Entities::SmallPine::SmallPine.new
+			cell_at(10,12).add_structure Entities::SmallPine::SmallPine.new
+			cell_at(10,13).add_structure Entities::SmallPine::SmallPine.new
+			cell_at(10,14).add_structure Entities::SmallPine::SmallPine.new
+			cell_at(11,12).add_structure Entities::SmallPine::SmallPine.new
 		end
 
 		def cell_at r, c

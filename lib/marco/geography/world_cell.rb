@@ -21,6 +21,11 @@ module Geography
 			@structures
 		end
 
+		def add_structure s
+			structures << s
+			s.world_space= [@r, @c] if s.respond_to? :world_space=
+		end
+
 		def terrain_type
 			@terrain_type
 		end
