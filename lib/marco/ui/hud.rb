@@ -40,5 +40,10 @@ module UI
 		def draw_clock
       @font.draw(@clock.report, 500,0,1024,4,4)
 		end
+
+
+		def click x, y
+			return false
+		end
 	end
 end

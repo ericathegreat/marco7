@@ -34,7 +34,8 @@ module UI
 
     def button_up(id)
       if (id == Gosu::MsLeft)
-        @screen.click(mouse_x, mouse_y) if @screen.respond_to?(:click)
+        consumed = @hud.click(mouse_x, mouse_y)
+        @screen.click(mouse_x, mouse_y) if !consumed && @screen.respond_to?(:click)
       else
         @screen.button_up(id) if @screen.respond_to?(:button_up)
       end
