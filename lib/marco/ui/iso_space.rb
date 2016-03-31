@@ -8,7 +8,7 @@ module UI
 		WINDOW_PADDING = 1
 		
 		def render_center
-			return world_to_render(*Player.instance.player_world_space)
+			return world_to_render(*Player.instance.world_space)
 		end
 
 		def for_each_tile_on_screen

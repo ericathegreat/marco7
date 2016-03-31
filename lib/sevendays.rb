@@ -45,7 +45,6 @@ module Marco
 					player.location.contents.map{ |i| i.interactions(player) }.flatten
 
 				clear_screen				
-				puts player.report
 				puts clock.report
 				
 				show_menu interactions

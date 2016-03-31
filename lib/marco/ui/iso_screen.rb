@@ -34,23 +34,23 @@ module UI
 
 		def update
 			if Gosu.button_down?( Gosu::KbUp )
-				Player.instance.player_world_space_move [-0.05,-0.05]
+				Player.instance.move [-0.05,-0.05]
 			end
 			if Gosu.button_down?( Gosu::KbDown )
-				Player.instance.player_world_space_move [0.05,0.05]
+				Player.instance.move [0.05,0.05]
 			end
 			if Gosu.button_down?( Gosu::KbLeft )
-				Player.instance.player_world_space_move [-0.05, 0.05]
+				Player.instance.move [-0.05, 0.05]
 			end
 			if Gosu.button_down?( Gosu::KbRight )
-				Player.instance.player_world_space_move [0.05,-0.05]
+				Player.instance.move [0.05,-0.05]
 			end
 		end
 
 		def click x, y
 			world_space = screen_to_world(y, x).map{|a| a.round}
 			# puts world_space.inspect
-			# puts Player.instance.player_world_space.inspect
+			# puts Player.instance.world_space.inspect
 			Player.instance.engage_with(@place.cell_at(*world_space).structures.collect)
 		end
 	end
