@@ -1,7 +1,6 @@
 require 'singleton'
 require_relative 'registry'
 require_relative 'world_space_aware'
-require_relative "interactions/quit_interaction"
 require_relative "interactions/show_inventory_interaction"
 
 class Player
@@ -69,13 +68,5 @@ class Player
 				c.interactions
 			end.flatten
 		end
-	end
-
-	def quit
-		@quit = true
-	end
-
-	def quit?
-		@quit ||= false
 	end
 end
