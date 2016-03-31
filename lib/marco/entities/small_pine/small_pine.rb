@@ -9,7 +9,7 @@ module Entities
 			def interactions
 				[
 					Interactions::TestInteraction.new("Hello from small pine"),
-					Interactions::TestInteraction.new("Still a small pine - #{world_space}")
+					Interactions::TestInteraction.new("Still a small pine at #{world_space}")
 				]
 			end
 

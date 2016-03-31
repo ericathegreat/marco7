@@ -1,7 +1,9 @@
 require_relative '../player'
 require_relative '../clock'
+require_relative 'iso_space'
 module UI
 	class Hud
+		include IsoSpace
 
 		def associate
 			@player = Player.instance
@@ -26,10 +28,11 @@ module UI
 		end
 
 		def draw_interactions
-			if @player.interacting
-				@player.available_actions.each_with_index do | interaction, i |
-					puts @player.engaged_entity
-					@font.draw(interaction.display_text, 200, 50 * i, 1024, 2, 2)
+			if @player.hud_state.show_interactions?
+				hud_state = @player.hud_state
+				menu_center = world_to_screen hud_state.engaged_entity.r, hud_state.engaged_entity.c, 0
+				hud_state.available_actions.each_with_index do | interaction, i |
+					@font.draw(interaction.display_text, menu_center[0], menu_center[1] + 50 * i, 1024, 2, 2)
 				end
 			end
 		end

@@ -1,13 +1,17 @@
 require 'singleton'
 require_relative 'registry'
 require_relative 'world_space_aware'
-require_relative "interactions/show_inventory_interaction"
+require_relative 'interactions/show_inventory_interaction'
+require_relative 'hud_states/noop'
+require_relative 'hud_states/entity_selected'
 
 class Player
 	include Singleton
 	include WorldSpaceAware
 
-	attr_accessor :inventory, :inventory_max_size, :location_stack
+	attr_accessor :inventory, :inventory_max_size, :location_stack, :hud_state
+
+	HUD_NOOP = HudStates::Noop.new
 
 	def initialize
 		@inventory = []
@@ -16,13 +20,12 @@ class Player
 		@world = Registry.instance.map(:world)
 		self.world_space= [10,10]
 
-		@interacting_with = nil 
+		@hud_state = HUD_NOOP
 	end
 
 	def interactions player
 		[
-			Interactions::QuitInteraction.new(player),
-			Interactions::ShowInventoryInteraction.new(player),
+			Interactions::ShowInventoryInteraction.new(player)
 		]
 	end
 
@@ -44,29 +47,12 @@ class Player
 		end
 	end
 
-	def engage_with entity
-		if @interacting_with == entity
-			@interacting_with = nil
+	def engage_with entities
+		if @hud_state == HUD_NOOP && entities != nil && entities.size > 0
+			@hud_state = HudStates::EntitySelected.new entities
 		else
-			@interacting_with = entity
+			@hud_state = HUD_NOOP
 		end
 	end
 
-	def engaged_entity
-		@interacting_with.first
-	end
-
-	def interacting
-		@interacting_with != nil
-	end
-
-	def available_actions
-		if @interacting_with == nil
-			@interactions = []
-		else
-			@interactions = @interacting_with.each do |c|
-				c.interactions
-			end.flatten
-		end
-	end
 end
