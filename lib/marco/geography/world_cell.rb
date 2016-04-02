@@ -64,7 +64,7 @@ module Geography
 			return Neighbours.new(@r, @c, @world)
 		end
 
-		def can_walk r, c
+		def can_walk
 			@can_walk ||= !BLOCKING_TERRAINS.include?(@terrain_type)
 		end
 	end

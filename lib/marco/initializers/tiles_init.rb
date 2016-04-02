@@ -8,7 +8,7 @@ class TilesInitializer < Initializer
 	register do |r|
 		puts "Initializing Tiles"
 
-		r.register_sprite :player, UI::Sprites::BaseSprite.new('penguin.png', 32, 64)
+		r.register_sprite :player, UI::Sprites::BaseSprite.new('marco.png', 64, 100)
 		# r.register_sprite :player, UI::Sprites::BaseSprite.new('black_square.png', 1, 1)
 
 		r.register_sprite :grass, UI::Sprites::BaseSprite.new('grass.png', 64, 45, true)
