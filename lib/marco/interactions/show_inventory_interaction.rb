@@ -6,7 +6,7 @@ module Interactions
 			"Show Inventory (#{@player.inventory.size})"
 		end
 
-		def execute
+		def execute player, entity
 			system('clear') or system('cls')
 			puts @player.inventory.inspect
 			gets

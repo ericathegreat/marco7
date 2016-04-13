@@ -11,7 +11,7 @@ module Interactions
 			"Buy//#{@product.name}"
 		end
 
-		def execute
+		def execute player, entity
 			if(@player.can_afford @product.price)
 				@player.buy @product, @product.price
 				puts "bought #{@product.name}"

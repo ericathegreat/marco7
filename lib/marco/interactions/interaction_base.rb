@@ -12,7 +12,7 @@ module Interactions
 			self.class.name
 		end
 
-		def execute
+		def execute player, entity
 			puts "#{self.class.name}"
 		end
 	end

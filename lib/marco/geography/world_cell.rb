@@ -26,6 +26,11 @@ module Geography
 			s.world_space= [@r, @c] if s.respond_to? :world_space=
 		end
 
+		def remove_structure s
+			structures.delete s
+			s.world_space = [nil, nil] if s.respond_to? :world_space=
+		end
+
 		def terrain_type
 			@terrain_type
 		end

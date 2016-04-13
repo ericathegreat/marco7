@@ -1,17 +1,16 @@
 require_relative 'interaction_base'
 
 module Interactions
-	class TestInteraction < InteractionBase
-		def initialize (message)
-			@message = message
+	class ChopTreeInteraction < InteractionBase
+		def initialize
 		end
 
 		def display_text
-			@message
+			'Chop Tree'
 		end
 
 		def execute player, entity
-			puts @message
+			entity.destroy
 		end
 	end
 end

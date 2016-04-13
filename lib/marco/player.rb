@@ -29,12 +29,6 @@ class Player
 		]
 	end
 
-	def neighbouring_interactions
-		neighbouring_cells.collect do |cell|
-			cell.structures.collect {|s| cell}
-		end.flatten
-	end
-
 	def neighbouring_cells
 		@world.cell_at(r,c).neighbours.cells
 	end
