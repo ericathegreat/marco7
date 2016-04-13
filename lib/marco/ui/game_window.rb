@@ -32,6 +32,15 @@ module UI
       true
     end
 
+    # def button_down(id)
+    #   if (id == Gosu::MsLeft)
+    #     consumed = @hud.mouse_down(mouse_x, mouse_y)
+    #     @screen.mouse_down(mouse_x, mouse_y) if !consumed && @screen.respond_to?(:mouse_down)
+    #   else
+    #     @screen.button_down(id) if @screen.respond_to?(:button_down)
+    #   end
+    # end
+
     def button_up(id)
       if (id == Gosu::MsLeft)
         consumed = @hud.click(mouse_x, mouse_y)
