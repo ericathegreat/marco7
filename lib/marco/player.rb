@@ -18,7 +18,7 @@ class Player
 		@inventory_max_size = 9
 
 		@world = Registry.instance.map(:world)
-		self.world_space= [10,10]
+		self.world_space= [9,9]
 
 		@hud_state = HUD_NOOP
 	end

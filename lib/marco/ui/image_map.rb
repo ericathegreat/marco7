@@ -2,6 +2,10 @@ require_relative 'image_map_zone'
 
 module UI
 	module ImageMap
+		def clear_click_map
+			@zones = nil
+		end
+
 		def define_zone polygon, interaction
 			@zones ||= Array.new
 			@zones << Zone.new(polygon, interaction)
@@ -11,8 +15,8 @@ module UI
 			@zones.select{ |z| z.region.contains?(point) }.map(&:interaction).flatten
 		end
 
-		def click(x,y)
-			puts interactions_under(Point(x,y))
-		end
+		# def click(x,y)
+		# 	puts interactions_under(Point(x,y))
+		# end
 	end
 end
