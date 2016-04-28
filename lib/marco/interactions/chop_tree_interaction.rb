@@ -10,6 +10,7 @@ module Interactions
 		end
 
 		def execute player, entity
+			player.find_path(entity.route_cell)
 			entity.destroy
 		end
 	end

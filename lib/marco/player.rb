@@ -1,6 +1,7 @@
 require 'singleton'
 require_relative 'registry'
 require_relative 'world_space_aware'
+require_relative 'pathfinding'
 require_relative 'interactions/show_inventory_interaction'
 require_relative 'hud_states/noop'
 require_relative 'hud_states/entity_selected'
@@ -21,12 +22,17 @@ class Player
 		self.world_space= [9,9]
 
 		@hud_state = HUD_NOOP
+		@pathfinder = Pathfinding.new(@world)
 	end
 
 	def interactions player
 		[
 			Interactions::ShowInventoryInteraction.new(player)
 		]
+	end
+
+	def current_cell
+		@world.cell_at(r,c)
 	end
 
 	def neighbouring_cells
@@ -47,6 +53,10 @@ class Player
 		else
 			@hud_state = HUD_NOOP
 		end
+	end
+
+	def find_path to
+		@pathfinder.find_path current_cell, to
 	end
 
 end

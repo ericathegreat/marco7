@@ -25,6 +25,9 @@ module Entities
 				:small_pine
 			end
 
+			def route_cell
+				Registry.instance.map(:world).cell_at(r-1, c)
+			end
 		end
 	end
 end

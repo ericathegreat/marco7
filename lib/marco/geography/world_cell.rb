@@ -14,7 +14,7 @@ module Geography
 		end
 
 		def to_s
-			puts "[#{@r}, #{@c}] - #{@terrain_type}"
+			"[#{@r}, #{@c}] - #{@terrain_type}"
 		end
 
 		def structures
@@ -71,6 +71,24 @@ module Geography
 
 		def can_walk
 			@can_walk ||= !BLOCKING_TERRAINS.include?(@terrain_type)
+			@can_walk && structures.empty?
 		end
+
+		#required for pathfinding
+		def <=>(b)
+	    if @r < b.r
+	      -1
+	    elsif @r > b.r
+	      1
+	    else
+	      if @c < b.c
+	        -1
+	      elsif @c > b.c
+	        1
+	      else
+	        0
+	      end
+	    end
+	  end
 	end
 end

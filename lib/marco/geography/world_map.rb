@@ -62,6 +62,7 @@ module Geography
 			cell_at(10,13).add_structure Entities::SmallPine::SmallPine.new
 			cell_at(10,14).add_structure Entities::SmallPine::SmallPine.new
 			cell_at(11,12).add_structure Entities::SmallPine::SmallPine.new
+			cell_at(2,4).add_structure Entities::SmallPine::SmallPine.new
 		end
 
 		def cell_at r, c
