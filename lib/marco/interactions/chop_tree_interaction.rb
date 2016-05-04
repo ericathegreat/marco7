@@ -1,4 +1,5 @@
 require_relative 'interaction_base'
+require_relative '../actions/follow_path_action'
 
 module Interactions
 	class ChopTreeInteraction < InteractionBase
@@ -10,7 +11,8 @@ module Interactions
 		end
 
 		def execute player, entity
-			player.find_path(entity.route_cell)
+			path = player.find_path(entity.route_cell)
+			player.start_action(Actions::FollowPathAction.new(player, path, 0.5))
 			entity.destroy
 		end
 	end

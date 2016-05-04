@@ -16,7 +16,7 @@ module UI
 
     def update
       @screen = Registry.instance.screen :world
-      @screen.update
+      @screen.update(Gosu.milliseconds)
     end
 
     def draw

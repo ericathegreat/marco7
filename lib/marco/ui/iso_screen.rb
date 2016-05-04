@@ -32,19 +32,21 @@ module UI
 			end
 		end
 
-		def update
+		def update(milliseconds)
+			Player.instance.update(milliseconds)
+
 			if Gosu.button_down?( Gosu::KbUp )
 				Player.instance.move [-0.05,-0.05]
 			end
-			if Gosu.button_down?( Gosu::KbDown )
-				Player.instance.move [0.05,0.05]
-			end
-			if Gosu.button_down?( Gosu::KbLeft )
-				Player.instance.move [-0.05, 0.05]
-			end
-			if Gosu.button_down?( Gosu::KbRight )
-				Player.instance.move [0.05,-0.05]
-			end
+			# if Gosu.button_down?( Gosu::KbDown )
+			# 	Player.instance.move [0.05,0.05]
+			# end
+			# if Gosu.button_down?( Gosu::KbLeft )
+			# 	Player.instance.move [-0.05, 0.05]
+			# end
+			# if Gosu.button_down?( Gosu::KbRight )
+			# 	Player.instance.move [0.05,-0.05]
+			# end
 		end
 
 		def click x, y

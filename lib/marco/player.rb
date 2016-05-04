@@ -31,6 +31,15 @@ class Player
 		]
 	end
 
+	def update(time)
+		@action.update(time) unless @action.nil?
+	end
+
+	def start_action(action)
+		@action = action
+		action.start(Gosu.milliseconds)
+	end
+
 	def current_cell
 		@world.cell_at(r,c)
 	end
@@ -44,6 +53,13 @@ class Player
 		can_walk = @world.can_walk( *new_position )
 		if(can_walk)
 			world_space_move relative
+		end
+	end
+
+	def move_to absolute
+		can_walk = @world.can_walk( *absolute )
+		if(can_walk)
+			self.world_space= absolute
 		end
 	end
 
