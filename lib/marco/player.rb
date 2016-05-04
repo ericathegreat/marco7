@@ -32,7 +32,12 @@ class Player
 	end
 
 	def update(time)
-		@action.update(time) unless @action.nil?
+		return if @action.nil?
+		if @action.finished?
+			@action = nil
+		else
+			@action.update(time)
+		end
 	end
 
 	def start_action(action)

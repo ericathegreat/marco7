@@ -7,9 +7,14 @@ module Actions
 		end
 
 		def start(time)
+			return if finished?
 			@start_time = time
 			@current_target = @entity.current_cell
 			next_target (time)
+		end
+
+		def finished?
+			@path.nil? || @path.size == 0
 		end
 
 		def update(time)
