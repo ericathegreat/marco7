@@ -40,6 +40,10 @@ class Player
 		end
 	end
 
+	def push_interaction(interaction)
+		interaction.execute(self, hud_state.engaged_entity)
+	end
+
 	def start_action(action)
 		@action = action
 		action.start(Gosu.milliseconds)

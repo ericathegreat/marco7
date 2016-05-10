@@ -33,7 +33,7 @@ module UI
 		def click x, y
 			if @player.hud_state.show_interactions?
 				interaction = interactions_under(Point(x,y)).first
-				interaction.execute(@player, @player.hud_state.engaged_entity) unless interaction == nil
+				@player.push_interaction(interaction) unless interaction == nil
 			end
 			return false
 		end
