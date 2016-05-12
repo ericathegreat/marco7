@@ -7,14 +7,14 @@ module Actions
 		end
 
 		def start(time)
-			return if finished?
+			return if @path.nil? || @path.size == 0
 			@start_time = time
 			@current_target = @entity.current_cell
 			next_target (time)
 		end
 
 		def finished?
-			@path.nil? || @path.size == 0
+			@path.nil? || @finished
 		end
 
 		def update(time)
@@ -23,8 +23,10 @@ module Actions
 
 			if (percentage <= 1.0)
 				@entity.move_to tween(@current_origin, @current_target, percentage)
+			elsif @path.size == 0
+				@finished = true
 			else
-				next_target(time)
+				next_target(time) unless @path.size == 0
 			end
 		end
 
