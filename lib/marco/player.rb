@@ -2,7 +2,7 @@ require 'singleton'
 require_relative 'registry'
 require_relative 'world_space_aware'
 require_relative 'pathfinding'
-require_relative 'interactions/show_inventory_interaction'
+require_relative 'interaction_queue'
 require_relative 'hud_states/noop'
 require_relative 'hud_states/entity_selected'
 
@@ -18,6 +18,8 @@ class Player
 		@inventory = []
 		@inventory_max_size = 9
 
+		@interaction_queue = InteractionQueue.new self
+
 		@world = Registry.instance.map(:world)
 		self.world_space= [9,9]
 
@@ -27,26 +29,16 @@ class Player
 
 	def interactions player
 		[
-			Interactions::ShowInventoryInteraction.new(player)
 		]
 	end
 
 	def update(time)
-		return if @action.nil?
-		if @action.finished?
-			@action = nil
-		else
-			@action.update(time)
-		end
+		@interaction_queue.update(time)
 	end
 
 	def push_interaction(interaction)
-		interaction.execute(self, hud_state.engaged_entity)
-	end
-
-	def start_action(action)
-		@action = action
-		action.start(Gosu.milliseconds)
+		@interaction_queue << interaction
+		puts @interaction_queue
 	end
 
 	def current_cell
