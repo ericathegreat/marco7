@@ -26,6 +26,10 @@ class Player
 		@hud_state = HUD_NOOP
 		@pathfinder = Pathfinding.new(@world)
 	end
+	
+	def render_state
+		@render_state ||= Hash.new
+	end
 
 	def interactions player
 		[

@@ -6,10 +6,14 @@ module UI
 	module Sprites
 		class BaseSprite
 			include IsoSpace
-			def initialize relative_filename, offset_x_px, offset_y_px, tileable = false
+			def initialize image, offset_x_px, offset_y_px, tileable = false
 				@offset_x_px = offset_x_px
 				@offset_y_px = offset_y_px
-				@image = Gosu::Image.new("img/#{relative_filename}", tileable: tileable)
+				if (image.instance_of? String)
+					@image = Gosu::Image.new("img/#{image}", tileable: tileable)
+				else
+					@image = image
+				end
 			end
 
 			def draw layer, world_entity
