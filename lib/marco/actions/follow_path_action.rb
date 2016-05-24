@@ -9,8 +9,6 @@ module Actions
 		def start(time)
 			return if @path.nil? || @path.size == 0
 
-			@entity.render_state[:switch] = :walk
-
 			@start_time = time
 			@current_target = @entity.current_cell
 			next_target (time)
@@ -20,9 +18,19 @@ module Actions
 			@path.nil? || @finished
 		end
 
+		def update_orientation
+			if @current_origin.r <= @current_target.r && @current_origin.c >= @current_target.c
+				@entity.render_state[:switch] = :walk_right
+			else
+				@entity.render_state[:switch] = :walk_left
+			end
+		end
+
 		def update(time)
 			time_diff = time - @start_time #ms passed
 			percentage = time_diff / @ms_per_tile
+
+			update_orientation
 
 			if (percentage < 1.0)
 				@entity.move_to tween(@current_origin, @current_target, percentage)
