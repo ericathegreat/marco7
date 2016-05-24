@@ -31,6 +31,11 @@ class Player
 		@render_state ||= Hash.new
 	end
 
+	def add_to_inventory item
+		return if @inventory_max_size <= @inventory.size
+		@inventory << item
+	end
+
 	def interactions player
 		[
 		]
