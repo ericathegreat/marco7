@@ -42,7 +42,6 @@ class Player
 
 	def push_interaction(interaction)
 		@interaction_queue << interaction
-		puts @interaction_queue
 	end
 
 	def current_cell

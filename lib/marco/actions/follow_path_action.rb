@@ -8,6 +8,9 @@ module Actions
 
 		def start(time)
 			return if @path.nil? || @path.size == 0
+
+			@entity.render_state[:switch] = :walk
+
 			@start_time = time
 			@current_target = @entity.current_cell
 			next_target (time)
@@ -25,6 +28,7 @@ module Actions
 				@entity.move_to tween(@current_origin, @current_target, percentage)
 			elsif @path.size == 0
 				@entity.move_to [@current_target.r, @current_target.c]
+				@entity.render_state[:switch] = nil
 				@finished = true
 			else
 				next_target(time) unless @path.size == 0

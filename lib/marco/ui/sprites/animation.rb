@@ -4,7 +4,7 @@ require 'Gosu'
 
 module UI
 	module Sprites
-		class AnimationGroup
+		class Animation
 
 			def initialize sprites, duration
 				@sprites = sprites
