@@ -21,9 +21,10 @@ module Actions
 			time_diff = time - @start_time #ms passed
 			percentage = time_diff / @ms_per_tile
 
-			if (percentage <= 1.0)
+			if (percentage < 1.0)
 				@entity.move_to tween(@current_origin, @current_target, percentage)
 			elsif @path.size == 0
+				@entity.move_to [@current_target.r, @current_target.c]
 				@finished = true
 			else
 				next_target(time) unless @path.size == 0

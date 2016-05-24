@@ -10,9 +10,6 @@ module Entities
 			def interactions
 				[
 					Interactions::TestInteraction.new("Hello from small pine"),
-					Interactions::TestInteraction.new("Still a small pine at #{world_space}"),
-					Interactions::TestInteraction.new("Three!"),
-					Interactions::TestInteraction.new("Something with a lot of text so it's long"),
 					Interactions::ChopTreeInteraction.new,
 				]
 			end
