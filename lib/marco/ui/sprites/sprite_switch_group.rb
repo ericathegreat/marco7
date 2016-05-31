@@ -13,6 +13,7 @@ module UI
 				render_state = world_entity.render_state[:switch] || @states.keys.first
 				@states[render_state].draw(layer, world_entity)
 			end
+			
 		end
 	end
 end

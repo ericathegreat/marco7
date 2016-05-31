@@ -3,13 +3,12 @@ require_relative '../../interactions/chop_tree_interaction'
 require_relative '../../world_space_aware'
 
 module Entities
-	module SmallPine
-		class SmallPine
+	module PomegraniteTree
+		class PomegraniteTree
 			include WorldSpaceAware
 
 			def interactions
 				[
-					Interactions::TestInteraction.new("Hello from small pine"),
 					Interactions::ChopTreeInteraction.new,
 				]
 			end
@@ -18,12 +17,12 @@ module Entities
 				Registry.instance.map(:world).cell_at(r, c).remove_structure self
 			end
 
-			def harvest_chopped
-				:pile_of_wood
-			end
-
 			def to_sym
-				:small_pine
+				:pomegranite_tree
+			end
+			
+			def harvest_chopped
+				:pomegranite
 			end
 
 			def route_cell

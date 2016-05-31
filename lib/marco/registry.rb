@@ -3,7 +3,7 @@ require 'singleton'
 class Registry
 	include Singleton
 
-	['entity', 'screen', 'map', 'sprite'].each do |thing|
+	['entity', 'screen', 'map', 'sprite', 'inventory_sprite'].each do |thing|
 
 		define_method "register_#{thing}" do |name, instance|
 			send("#{thing}s")[name] = instance

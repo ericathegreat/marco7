@@ -44,7 +44,7 @@ module UI
 			@player.inventory_max_size.times do |i|
 				@inventory_background.screen_space_draw(120 + 120*i,GameWindow::WINDOW_HIGH - 80, @z)
 				unless (@player.inventory[i].nil?)
-					Registry.instance.sprite(@player.inventory[i]).screen_space_draw(120 + 120*i, GameWindow::WINDOW_HIGH - 50, @z)
+					Registry.instance.inventory_sprite(@player.inventory[i]).screen_space_draw(120 + 120*i, GameWindow::WINDOW_HIGH - 50, @z)
 				end
 			end
 		end

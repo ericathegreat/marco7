@@ -17,7 +17,7 @@ module Interactions
 				Actions::FollowPathAction.new(@player, @path, 0.5),
 				Actions::SimpleAction.new(@tree) do |time|
 					@entity.destroy
-					@player.add_to_inventory(:small_pine)
+					@player.add_to_inventory(@entity.harvest_chopped)
 				end
 			]
 		end
