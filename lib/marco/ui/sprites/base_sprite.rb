@@ -10,7 +10,7 @@ module UI
 				@offset_x_px = offset_x_px
 				@offset_y_px = offset_y_px
 				if (image.instance_of? String)
-					@image = Gosu::Image.new("img/#{image}", tileable: tileable)
+					@image = Gosu::Image.new("img/#{image}", tileable: tileable, retro: tileable)
 				else
 					@image = image
 				end

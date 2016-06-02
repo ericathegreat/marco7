@@ -3,8 +3,8 @@ require_relative '../registry'
 
 module UI
   class GameWindow < Gosu::Window
-  	WINDOW_WIDE = 1200
-  	WINDOW_HIGH = 900
+  	WINDOW_WIDE = 900
+  	WINDOW_HIGH = 640
 
     def initialize
       super WINDOW_WIDE, WINDOW_HIGH
