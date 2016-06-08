@@ -13,9 +13,9 @@ module UI
 			@player = Player.instance
 			@clock = Clock.instance
 
-      @font = Gosu::Font.new 12	
+      @font = Gosu::Font.new 10
 
-			@font_scale = 2		
+			@font_scale = 2
 
 			@z = 4096
 			@inventory_background = Registry.instance.sprite(:inventory_item_back)
