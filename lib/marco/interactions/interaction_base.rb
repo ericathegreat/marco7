@@ -1,9 +1,5 @@
 module Interactions
 	class InteractionBase
-		def initialize player
-			@player = player
-		end
-		
 		def valid?
 			true
 		end
