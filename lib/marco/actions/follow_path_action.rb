@@ -1,3 +1,5 @@
+require 'fiber'
+
 module Actions
 	class FollowPathAction
 		def initialize(entity, path, speed = 0.5)  #speed = seconds per tile
@@ -8,45 +10,50 @@ module Actions
 
 		def start(time)
 			return if @path.nil? || @path.size == 0
+			
+			@fiber = Fiber.new do
 
-			@start_time = time
-			@current_target = @entity.current_cell
-			next_target (time)
+				@path.each do |current_target_wrapper|
+					start_time = time
+					percentage = 0.0
+
+					current_origin = @entity.current_cell
+					current_target = current_target_wrapper.location
+
+					update_orientation(current_origin, current_target)
+
+					until percentage >= 1.0 do
+						time_diff = time - start_time #ms passed
+						percentage = time_diff / @ms_per_tile
+
+						@entity.move_to tween(current_origin, current_target, percentage)
+						time = Fiber.yield
+					end
+
+					@entity.move_to [current_target.r, current_target.c]
+					time = Fiber.yield
+				end
+
+				@entity.render_state[:switch] = nil
+			end
+
+			@fiber.resume
 		end
 
 		def finished?
-			@path.nil? || @finished
+			@fiber.nil? || !@fiber.alive?
 		end
 
-		def update_orientation
-			if @current_origin.r <= @current_target.r && @current_origin.c >= @current_target.c
+		def update(time)
+			@fiber.resume time
+		end
+
+		def update_orientation (origin, target)
+			if origin.r <= target.r && origin.c >= target.c
 				@entity.render_state[:switch] = :walk_right
 			else
 				@entity.render_state[:switch] = :walk_left
 			end
-		end
-
-		def update(time)
-			time_diff = time - @start_time #ms passed
-			percentage = time_diff / @ms_per_tile
-
-			update_orientation
-
-			if (percentage < 1.0)
-				@entity.move_to tween(@current_origin, @current_target, percentage)
-			elsif @path.size == 0
-				@entity.move_to [@current_target.r, @current_target.c]
-				@entity.render_state[:switch] = nil
-				@finished = true
-			else
-				next_target(time) unless @path.size == 0
-			end
-		end
-
-		def next_target time
-			@current_origin = @current_target
-			@current_target = @path.shift.location
-			@start_time = time
 		end
 
 		def tween from, to, percentage
