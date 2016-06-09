@@ -1,44 +1,30 @@
+require 'fiber'
+
 module Interactions
 	class InteractionBase
-		def valid?
-			true
-		end
-
 		def display_text
 			self.class.name
 		end
 
-		def queue player, entity
-			@player = player
-			@entity = entity
-			@finished = false
-		end
-
-		def actions
-			@actions ||= []
-		end
-
-		def execute
-			puts "#{self.class.name}"
-		end
-
-		def finished?
-			@finished
-		end
-
-		def finish
-			@finished = true
+		def start(time)
+			@fiber.resume time
 		end
 
 		def update(time)
-			if actions.empty?
-				finish
-			elsif actions.first.finished?
-				actions.shift
-				actions.first.start(time) if actions.size > 0
-			else
-				actions.first.update(time)
+			@fiber.resume(time) if @fiber.alive?
+		end
+
+		def finished?
+			@fiber.nil? || !@fiber.alive?
+		end
+
+		def wait_for_action(action, time)
+			action.start(time)
+			until (action.finished?) do
+				time = Fiber.yield
+				action.update(time)
 			end
 		end
+		
 	end
 end

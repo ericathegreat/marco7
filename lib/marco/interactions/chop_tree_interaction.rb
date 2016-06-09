@@ -1,29 +1,17 @@
 require_relative 'interaction_base'
 require_relative '../actions/follow_path_action'
-require_relative '../actions/simple_action'
 
 module Interactions
 	class ChopTreeInteraction < InteractionBase
-		def initialize
-		end
 
 		def queue player, entity
-			super player, entity
-			@finished = false
+			@fiber = Fiber.new do |time|
+				path = player.find_path(entity.route_cell)
+				wait_for_action Actions::FollowPathAction.new(player, path), time
 
-			@path = player.find_path(entity.route_cell)
-
-			@actions = [
-				Actions::FollowPathAction.new(@player, @path, 0.5),
-				Actions::SimpleAction.new(@tree) do |time|
-					@entity.destroy
-					@player.add_to_inventory(@entity.harvest_chopped)
-				end
-			]
-		end
-
-		def start(time)
-			actions.first.start(time)
+				entity.destroy
+				player.add_to_inventory(entity.harvest_chopped)
+			end
 		end
 
 		def display_text

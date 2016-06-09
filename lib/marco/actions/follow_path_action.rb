@@ -1,6 +1,6 @@
 module Actions
 	class FollowPathAction
-		def initialize(entity, path, speed)  #speed = seconds per tile
+		def initialize(entity, path, speed = 0.5)  #speed = seconds per tile
 			@entity = entity
 			@path = path
 			@ms_per_tile = speed * 1000

@@ -1,5 +1,5 @@
 require_relative '../../interactions/test_interaction'
-require_relative '../../interactions/chop_tree_interaction_fiber'
+require_relative '../../interactions/chop_tree_interaction'
 require_relative '../../world_space_aware'
 
 module Entities
@@ -10,7 +10,7 @@ module Entities
 			def interactions
 				[
 					Interactions::TestInteraction.new("Hello from small pine"),
-					Interactions::ChopTreeInteractionFiber.new,
+					Interactions::ChopTreeInteraction.new,
 				]
 			end
 
