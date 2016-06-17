@@ -21,8 +21,8 @@ module UI
 				@image.draw(screen_coords[0] - @offset_x_px, screen_coords[1] - @offset_y_px, screen_coords[2])
 			end
 
-			def screen_space_draw x, y, z
-				@image.draw(x - @offset_x_px, y - @offset_y_px, z)
+			def screen_space_draw x, y, z, scale = 1
+				@image.draw(x - @offset_x_px, y - @offset_y_px, z, scale, scale)
 			end
 		end
 	end
