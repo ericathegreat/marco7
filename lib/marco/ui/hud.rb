@@ -19,9 +19,10 @@ module UI
 
 			@z = 4096
 			@inventory_background = Registry.instance.sprite(:inventory_item_back)
-			@pie_menu_background_left = Registry.instance.sprite(:pie_menu_background_left)
-			@pie_menu_background_right = Registry.instance.sprite(:pie_menu_background_right)
-			@pie_menu_background_mid = Registry.instance.sprite(:pie_menu_background_mid)
+			@border = Registry.instance.sprite(:pie_menu_border)
+			# @pie_menu_background_left = Registry.instance.sprite(:pie_menu_background_left)
+			# @pie_menu_background_right = Registry.instance.sprite(:pie_menu_background_right)
+			# @pie_menu_background_mid = Registry.instance.sprite(:pie_menu_background_mid)
 		end
 
 		def draw
@@ -73,27 +74,11 @@ module UI
 		end
 
 		def draw_pie_menu_background text_width, top_left
-			edge_width = 10
-			text_padding = 10
-			top_right = [top_left[0] + text_width, top_left[1]]
-
-			@pie_menu_background_mid.draw_as_quad( top_left[0], top_left[1] - text_padding, Gosu::Color::WHITE,
-				top_right[0], top_right[1] - text_padding, Gosu::Color::WHITE,
-				top_right[0], top_right[1] + @font.height * @font_scale + text_padding, Gosu::Color::WHITE,
-				top_left[0], top_left[1] + @font.height * @font_scale + text_padding, Gosu::Color::WHITE,
-				1024)
-
-			@pie_menu_background_left.draw_as_quad( top_left[0] - text_padding, top_left[1] - text_padding, Gosu::Color::WHITE,
-				top_left[0] + edge_width - text_padding, top_left[1] - text_padding, Gosu::Color::WHITE,
-				top_left[0] + edge_width - text_padding, top_left[1] + text_padding + @font.height * @font_scale, Gosu::Color::WHITE,
-				top_left[0] - text_padding, top_left[1] + text_padding + @font.height * @font_scale, Gosu::Color::WHITE,
-				1024)
-
-			@pie_menu_background_right.draw_as_quad( top_right[0], top_right[1] - text_padding, Gosu::Color::WHITE,
-				top_right[0] + edge_width, top_right[1] - text_padding, Gosu::Color::WHITE,
-				top_right[0] + edge_width, top_right[1] + text_padding + @font.height * @font_scale, Gosu::Color::WHITE,
-				top_right[0], top_right[1] + text_padding + @font.height * @font_scale, Gosu::Color::WHITE,
-				1024)
+			@border.screen_space_draw(top_left[1],
+																top_left[0],
+																text_width,
+																@font.height * @font_scale,
+																1024)
 		end
 
 		def text_top_left menu_center, interaction_number, total_interactions, text_width

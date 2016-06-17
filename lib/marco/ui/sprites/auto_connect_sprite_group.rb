@@ -5,7 +5,7 @@ require 'Gosu'
 module UI
 	module Sprites
 		class AutoConnectSpriteGroup
-			TILE_TYPES = [ :o, :n, :en, :ns, :nw, :ens, :enw, :nsw, :e, :es, :ew, :esw, :s, :sw, :ensw ]
+			TILE_TYPES = [ :o, :n, :en, :ns, :nw, :ens, :enw, :nsw, :e, :es, :ew, :esw, :s, :sw, :ensw, :w ]
 
 			def initialize link_to_terrain, sprites
 				@sprites = sprites
