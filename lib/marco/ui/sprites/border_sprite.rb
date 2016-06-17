@@ -15,7 +15,7 @@ module UI
 				@sprites
 			end
 
-			def screen_space_draw x, y, width, height, z
+			def screen_space_draw left, top, width, height, z
 				tl = sprites[:tl]
 				tl.draw(left - tl.width, top - tl.height, z)
 				tr = sprites[:tr]

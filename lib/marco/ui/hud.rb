@@ -20,9 +20,6 @@ module UI
 			@z = 4096
 			@inventory_background = Registry.instance.sprite(:inventory_item_back)
 			@border = Registry.instance.sprite(:pie_menu_border)
-			# @pie_menu_background_left = Registry.instance.sprite(:pie_menu_background_left)
-			# @pie_menu_background_right = Registry.instance.sprite(:pie_menu_background_right)
-			# @pie_menu_background_mid = Registry.instance.sprite(:pie_menu_background_mid)
 		end
 
 		def draw
@@ -43,7 +40,9 @@ module UI
 
 		def draw_inventory
 			@player.inventory_max_size.times do |i|
-				@inventory_background.screen_space_draw(120 + 120*i,GameWindow::WINDOW_HIGH - 80, @z)
+				@inventory_background.screen_space_draw(90 + 90*i,
+					                                      GameWindow::WINDOW_HIGH - 80, 
+					                                      55, 55, @z)
 				unless (@player.inventory[i].nil?)
 					Registry.instance.inventory_sprite(@player.inventory[i]).screen_space_draw(120 + 120*i, GameWindow::WINDOW_HIGH - 50, @z)
 				end
@@ -74,8 +73,8 @@ module UI
 		end
 
 		def draw_pie_menu_background text_width, top_left
-			@border.screen_space_draw(top_left[1],
-																top_left[0],
+			@border.screen_space_draw(top_left[0],
+																top_left[1],
 																text_width,
 																@font.height * @font_scale,
 																1024)
