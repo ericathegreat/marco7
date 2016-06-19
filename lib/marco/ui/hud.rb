@@ -1,5 +1,6 @@
 require_relative '../player'
 require_relative '../clock'
+require_relative 'inventory'
 require_relative 'iso_space'
 require_relative 'image_map'
 require 'geometry'
@@ -12,13 +13,13 @@ module UI
 		def associate
 			@player = Player.instance
 			@clock = Clock.instance
+			@inventory = Inventory.new(@player)
 
       @font = Gosu::Font.new 10
 
 			@font_scale = 2
 
 			@z = 4096
-			@inventory_background = Registry.instance.sprite(:inventory_item_back)
 			@border = Registry.instance.sprite(:pie_menu_border)
 		end
 
@@ -39,14 +40,7 @@ module UI
 		private
 
 		def draw_inventory
-			@player.inventory_max_size.times do |i|
-				x = 90 + 90*i
-				y = GameWindow::WINDOW_HIGH - 80
-				@inventory_background.screen_space_draw(x,y, 55, 55, @z)
-				unless (@player.inventory[i].nil?)
-					Registry.instance.inventory_sprite(@player.inventory[i]).screen_space_draw(x+45, y + 70, @z, 0.6)
-				end
-			end
+			@inventory.draw
 		end
 
 		def draw_interactions

@@ -3,8 +3,8 @@ require_relative '../../interactions/chop_tree_interaction'
 require_relative '../../world_space_aware'
 
 module Entities
-	module PomegraniteTree
-		class PomegraniteTree
+	module PersimmonTree
+		class PersimmonTree
 			include WorldSpaceAware
 
 			def interactions
@@ -18,11 +18,11 @@ module Entities
 			end
 
 			def to_sym
-				:pomegranite_tree
+				:persimmon_tree
 			end
 			
 			def harvest_chopped
-				:pomegranite
+				:persimmon
 			end
 
 			def route_cell
