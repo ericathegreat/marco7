@@ -1,7 +1,7 @@
 module UI
 	class Inventory
 		
-		def initialize player, z = 2048
+		def initialize player, z = 4096
 			@player = player
 			@inventory_background = Registry.instance.sprite(:inventory_item_back)
 			@z = z
