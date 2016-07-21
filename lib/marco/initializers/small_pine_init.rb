@@ -2,7 +2,7 @@ require_relative "../initializer"
 require_relative "../ui/sprites/base_sprite"
 require_relative "../entities/small_pine/small_pine"
 
-class TilesInitializer < Initializer
+class PineInitializer < Initializer
 
 	register do |r|
 		puts "Initializing Small Pine"

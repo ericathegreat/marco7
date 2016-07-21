@@ -4,7 +4,7 @@ require_relative "../ui/sprites/sprite_switch_group"
 require_relative "../ui/sprites/animation"
 
 
-class TilesInitializer < Initializer
+class MarcoInitializer < Initializer
 
 	def self.build_animation(height, width, images)
 		sprites = images.map do |image|
