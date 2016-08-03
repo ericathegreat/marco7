@@ -24,11 +24,13 @@ module Geography
 		def add_structure s
 			structures << s
 			s.world_space= [@r, @c] if s.respond_to? :world_space=
+			s.create_footprint if s.respond_to? :create_footprint
 		end
 
 		def remove_structure s
 			structures.delete s
 			s.world_space = [nil, nil] if s.respond_to? :world_space=
+			s.destroy_footprint if s.respond_to? :remove_footprint
 		end
 
 		def terrain_type

@@ -72,11 +72,7 @@ module Geography
 			cell_at(8,10).add_structure Entities::SmallPine::SmallPine.new
 			cell_at(2,4).add_structure Entities::SmallPine::SmallPine.new
 
-			bunker = Entities::Bunker::Bunker.new
-			cell_at(12,7).add_structure Entities::ChildCell::ChildCell.new(bunker)
-			cell_at(12,8).add_structure Entities::ChildCell::ChildCell.new(bunker)
-			cell_at(13,8).add_structure bunker
-			cell_at(13,7).add_structure Entities::ChildCell::ChildCell.new(bunker)
+			cell_at(13,8).add_structure Entities::Bunker::Bunker.new
 		end
 
 		def cell_at r, c
