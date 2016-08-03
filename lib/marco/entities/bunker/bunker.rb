@@ -7,6 +7,12 @@ module Entities
 		class Bunker
 			include WorldSpaceAware
 
+			def interactions
+				[
+					Interactions::TestInteraction.new("Do not click this button again")
+				]
+			end
+
 			def to_sym
 				:bunker
 			end
