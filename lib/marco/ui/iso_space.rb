@@ -30,6 +30,11 @@ module UI
 			@draw_rows ||= (GameWindow::WINDOW_HIGH/ROW_HEIGHT/2 + WINDOW_PADDING).ceil
 		end
 
+		def screen_to_render  r_px_screen, c_px_screen
+			world = screen_to_world(r_px_screen, c_px_screen);
+			world_to_render( world[0], world[1] )
+		end
+
 		def world_to_render r_world, c_world
 			r_px_render = (r_world + c_world) * ROW_HEIGHT
 			c_px_render = (r_world - c_world) * COLUMN_WIDTH

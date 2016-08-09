@@ -22,7 +22,7 @@ module UI
     def draw
       @image.draw(0,0,0,WINDOW_WIDE, WINDOW_HIGH)
       @screen = Registry.instance.screen :world
-      @screen.draw
+      @screen.draw self
 
       @hud = Registry.instance.screen :hud
       @hud.draw

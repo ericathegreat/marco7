@@ -33,4 +33,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency "gosu"
   spec.add_dependency "ruby-geometry"
   spec.add_dependency "polaris"
+  spec.add_dependency "ashton"
 end
