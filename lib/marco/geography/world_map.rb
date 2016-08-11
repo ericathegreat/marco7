@@ -56,6 +56,10 @@ module Geography
 			cell_at(2,10).terrain_type = :water
 			(0..100).each { |i| cell_at(0,i).terrain_type = :water}
 			(0..100).each { |i| cell_at(i,0).terrain_type = :water}
+			cell_at(5,6).add_structure Entities::ClassicalTemperate::WaterReeds.new
+			cell_at(4,6).add_structure Entities::ClassicalTemperate::WaterReeds.new
+			cell_at(4,5).add_structure Entities::ClassicalTemperate::WaterReeds.new
+			cell_at(6,4).add_structure Entities::ClassicalTemperate::WaterReeds.new
 
 			# cell_at(12,11).structures << :grass_blades
 			# cell_at(12,12).structures << :grass_blades
