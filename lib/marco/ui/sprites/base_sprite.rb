@@ -1,6 +1,5 @@
 require_relative '../../registry.rb'
 require_relative '../iso_space.rb'
-require_relative '../fx/grass_noise'
 require 'Gosu'
 
 module UI

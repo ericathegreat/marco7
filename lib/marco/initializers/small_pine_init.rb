@@ -1,6 +1,6 @@
 require_relative "../initializer"
 require_relative "../ui/sprites/base_sprite"
-require_relative "../entities/small_pine/small_pine"
+require_relative "../entities/classical_temperate/small_pine"
 
 class PineInitializer < Initializer
 
@@ -8,7 +8,7 @@ class PineInitializer < Initializer
 		puts "Initializing Small Pine"
 
 		r.register_sprite :small_pine, UI::Sprites::BaseSprite.new('pine_tree.png', 70, 230)
-		r.register_entity :small_pine, Entities::SmallPine::SmallPine
+		r.register_entity :small_pine, Entities::ClassicalTemperate::SmallPine
 		r.register_inventory_sprite :pile_of_wood, UI::Sprites::BaseSprite.new('pile_of_wood.png', 45, 65) 
 	end
 end	

@@ -63,14 +63,14 @@ module Geography
 			# cell_at(14,13).structures << :grass_blades
 			# cell_at(10,6).structures << :grass_blades
 			# cell_at(10,7).structures << :grass_blades
-			cell_at(10,12).add_structure Entities::SmallPine::SmallPine.new
-			cell_at(10,13).add_structure Entities::SmallPine::SmallPine.new
-			cell_at(10,14).add_structure Entities::SmallPine::SmallPine.new
-			cell_at(11,12).add_structure Entities::SmallPine::SmallPine.new
-			cell_at(10,8).add_structure Entities::PersimmonTree::PersimmonTree.new
-			cell_at(11,9).add_structure Entities::PersimmonTree::PersimmonTree.new
-			cell_at(8,10).add_structure Entities::SmallPine::SmallPine.new
-			cell_at(2,4).add_structure Entities::SmallPine::SmallPine.new
+			cell_at(10,12).add_structure Entities::ClassicalTemperate::SmallPine.new
+			cell_at(10,13).add_structure Entities::ClassicalTemperate::SmallPine.new
+			cell_at(10,14).add_structure Entities::ClassicalTemperate::SmallPine.new
+			cell_at(11,12).add_structure Entities::ClassicalTemperate::SmallPine.new
+			cell_at(10,8).add_structure Entities::ClassicalTemperate::PersimmonTree.new
+			cell_at(11,9).add_structure Entities::ClassicalTemperate::PersimmonTree.new
+			cell_at(8,10).add_structure Entities::ClassicalTemperate::SmallPine.new
+			cell_at(2,4).add_structure Entities::ClassicalTemperate::SmallPine.new
 
 			cell_at(13,8).add_structure Entities::Bunker::Bunker.new
 		end
