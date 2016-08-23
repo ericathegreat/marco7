@@ -1,5 +1,5 @@
 require 'singleton'
-require_relative 'Marco/registry'
+require_relative 'marco/registry'
 
 class Initialize
 	include Singleton

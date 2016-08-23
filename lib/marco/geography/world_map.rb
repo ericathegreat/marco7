@@ -5,7 +5,7 @@ require_relative './wall'
 module Geography
 	class WorldMap
 
-		WORLD_SIZE = 1024
+		WORLD_SIZE = 512
 
 		#      r          c
 		#      0          0
@@ -18,11 +18,19 @@ module Geography
 		#     3 4        4 3
 		#      4          4
 
-		def initialize rows = WORLD_SIZE, columns = WORLD_SIZE
+		def initialize
 			@out_of_bounds = LockedCell.new(self, -1, -1, terrain_type: :out_of_bounds)
 
 			@wall_map = Hash.new
 			@ground_map = Array.new(WORLD_SIZE) { Array.new(WORLD_SIZE) }
+		end
+
+		def width
+			WORLD_SIZE
+		end
+
+		def height
+			WORLD_SIZE
 		end
 
 		def set_to_demo_world

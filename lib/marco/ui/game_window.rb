@@ -5,9 +5,13 @@ module UI
   class GameWindow < Gosu::Window
   	WINDOW_WIDE = 960
   	WINDOW_HIGH = 640
+    SCALE = 1
+    RENDER_WIDE = WINDOW_WIDE/SCALE
+    RENDER_HIGH = WINDOW_WIDE/SCALE
 
     def initialize
       super WINDOW_WIDE, WINDOW_HIGH
+
       @player = Player.instance
 
       @image = Gosu::Image.new('img/background.png', tileable: true)
@@ -21,11 +25,13 @@ module UI
 
     def draw
       @image.draw(0,0,0,WINDOW_WIDE, WINDOW_HIGH)
-      @screen = Registry.instance.screen :world
-      @screen.draw self
+      scale(SCALE, SCALE) do
+        @screen = Registry.instance.screen :world
+        @screen.draw self
 
-      @hud = Registry.instance.screen :hud
-      @hud.draw
+        @hud = Registry.instance.screen :hud
+        @hud.draw
+      end
     end
 
     def needs_cursor?

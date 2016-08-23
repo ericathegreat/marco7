@@ -21,7 +21,7 @@ class Player
 		@interaction_queue = InteractionQueue.new self
 
 		@world = Registry.instance.map(:world)
-		self.world_space= [9,9]
+		self.world_space= [@world.height/2,@world.width/2]
 
 		@hud_state = HUD_NOOP
 		@pathfinder = Pathfinding.new(@world)

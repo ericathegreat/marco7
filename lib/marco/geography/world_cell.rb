@@ -6,7 +6,7 @@ module Geography
 		BLOCKING_TERRAINS = [:water, :wall_basic, :out_of_bounds]
 		def initialize world, r, c, params={}
 			@world = world
-			@terrain_type = params[:terrain_type] || :grass
+			@terrain_type = params[:terrain_type] || :undefined
 			@structures = []
 
 			@r = r

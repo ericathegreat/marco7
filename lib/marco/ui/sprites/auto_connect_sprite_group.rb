@@ -39,7 +39,7 @@ module UI
 				if (nil != world_entity)
 					neighbours = world_entity.neighbours.select_by_type!(@tile_type)
 					draw_as = neighbours.ensw
-					if draw_as == ""
+					if draw_as == "" || @sprites[draw_as.to_sym].nil?
 						@sprites[:o].draw(layer, world_entity)
 					else
 						@sprites[draw_as.to_sym].draw(layer, world_entity)

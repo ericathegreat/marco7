@@ -23,11 +23,11 @@ module UI
 		end
 
 		def draw_columns
-			@draw_columns ||= (GameWindow::WINDOW_WIDE/COLUMN_WIDTH/2 + WINDOW_PADDING).ceil
+			@draw_columns ||= (GameWindow::RENDER_WIDE/COLUMN_WIDTH/2 + WINDOW_PADDING).ceil
 		end
 
 		def draw_rows
-			@draw_rows ||= (GameWindow::WINDOW_HIGH/ROW_HEIGHT/2 + WINDOW_PADDING).ceil
+			@draw_rows ||= (GameWindow::RENDER_HIGH/ROW_HEIGHT/2 + WINDOW_PADDING).ceil
 		end
 
 		def screen_to_render  r_px_screen, c_px_screen
@@ -46,8 +46,8 @@ module UI
 
 			r_center, c_center = render_center
 
-			x_top_left = c_center - GameWindow::WINDOW_WIDE/2
-			y_top_left = r_center - GameWindow::WINDOW_HIGH/2
+			x_top_left = c_center - GameWindow::RENDER_WIDE/2
+			y_top_left = r_center - GameWindow::RENDER_HIGH/2
 			#x,y,z
 			[c_px_render - x_top_left, 
 				r_px_render - y_top_left, 
@@ -56,8 +56,8 @@ module UI
 
 		def screen_to_world r_px_screen, c_px_screen
 			r_origin, c_origin = render_center
-			c_px_render = c_origin + c_px_screen - GameWindow::WINDOW_WIDE/2
-			r_px_render = r_origin + r_px_screen - GameWindow::WINDOW_HIGH/2
+			c_px_render = c_origin + c_px_screen - GameWindow::RENDER_WIDE/2
+			r_px_render = r_origin + r_px_screen - GameWindow::RENDER_HIGH/2
 
 			r = ((c_px_render / COLUMN_WIDTH) + (r_px_render / ROW_HEIGHT)) / 2
 			c = r_px_render / ROW_HEIGHT - r

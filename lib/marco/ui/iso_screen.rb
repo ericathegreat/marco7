@@ -55,6 +55,7 @@ module UI
 
 		def draw_terrain r, c
 			terrain = @place.cell_at(r, c).terrain_type
+			return if terrain == :undefined
 			@tiles[terrain].draw( LAYER_GROUND, @place.cell_at(r,c) )
 		end
 
