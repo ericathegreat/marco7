@@ -24,7 +24,7 @@ module UI
 
 		def draw
 			@inventory_painter.draw
-      @font.draw(@clock.report, 500,0,1024,4,4)
+      # @font.draw(@clock.report, 500,0,1024,4,4)
 			draw_interactions
 		end
 

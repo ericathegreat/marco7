@@ -1,5 +1,6 @@
 require_relative '../entities/classical_temperate/water_reeds'
 require_relative 'simple_growth_biome'
+require 'set'
 	
 module Biomes
 	class LakeBiome < SimpleGrowthBiome
@@ -13,6 +14,9 @@ module Biomes
 			if @random.rand < 0.05
 				cell.add_structure Entities::ClassicalTemperate::WaterReeds.new
 			end
+		end
+
+		def complete
 		end
 	end
 end

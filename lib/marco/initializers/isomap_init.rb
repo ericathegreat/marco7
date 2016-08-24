@@ -5,6 +5,7 @@ require_relative '../biomes/biome_mapper'
 require_relative '../biomes/classical_temperate_biome'
 require_relative '../biomes/lake_biome'
 require_relative '../biomes/dirt_biome'
+require_relative '../biomes/origin_biome'
 
 require_relative "../ui/iso_screen"
 
@@ -18,6 +19,7 @@ class IsoInitializer < Initializer
 		registry.register_biome :classical_temperate, Biomes::ClassicalTemperateBiome
 		registry.register_biome :lake, Biomes::LakeBiome
 		registry.register_biome :dirt, Biomes::DirtBiome
+		registry.register_biome :origin, Biomes::OriginBiome
 
 		registry.register_screen :world, UI::IsoScreen.new
 	end

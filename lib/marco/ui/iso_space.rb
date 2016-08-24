@@ -5,7 +5,7 @@ module UI
 		COLUMN_WIDTH = 64
 		MAX_LAYERS = 2
 
-		WINDOW_PADDING = 1
+		WINDOW_PADDING = 3
 		
 		def render_center
 			return world_to_render(*Player.instance.world_space)

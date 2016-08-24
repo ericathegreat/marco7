@@ -29,7 +29,7 @@ module UI
 				polygon = text_polygon(text_width, top_left)
 				draw_pie_menu_background(text_width, top_left)
 
-				@font.draw(text, top_left[0], top_left[1], 1024, @font_scale, @font_scale)
+				@font.draw(text, top_left[0], top_left[1], 1024*1024, @font_scale, @font_scale)
 				click_map.define_zone(polygon, interaction)
 			end
 		end

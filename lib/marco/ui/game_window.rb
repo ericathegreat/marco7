@@ -7,7 +7,7 @@ module UI
   	WINDOW_HIGH = 640
     SCALE = 1
     RENDER_WIDE = WINDOW_WIDE/SCALE
-    RENDER_HIGH = WINDOW_WIDE/SCALE
+    RENDER_HIGH = WINDOW_HIGH/SCALE
 
     def initialize
       super WINDOW_WIDE, WINDOW_HIGH
@@ -29,9 +29,10 @@ module UI
         @screen = Registry.instance.screen :world
         @screen.draw self
 
-        @hud = Registry.instance.screen :hud
-        @hud.draw
       end
+
+      @hud = Registry.instance.screen :hud
+      @hud.draw
     end
 
     def needs_cursor?

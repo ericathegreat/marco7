@@ -27,11 +27,11 @@ void main()
 }
   END
 
-		  def self.shader topX, topY
+		  def self.shader topY, topX
 		    @noise ||= Ashton::Shader.new fragment: NOISE_FRAGMENT, uniforms: {
-	        window_size: [GameWindow::WINDOW_WIDE, GameWindow::WINDOW_HIGH]
+	        window_size: [GameWindow::RENDER_WIDE, GameWindow::RENDER_HIGH]
 	      }
-		    @noise.topxy = [topY, topX]
+		    @noise.topxy = [topX, topY]
 		    @noise
 		  end
 
