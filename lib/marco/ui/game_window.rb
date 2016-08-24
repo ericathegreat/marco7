@@ -5,7 +5,7 @@ module UI
   class GameWindow < Gosu::Window
   	WINDOW_WIDE = 960
   	WINDOW_HIGH = 640
-    SCALE = 1
+    SCALE = 0.05
     RENDER_WIDE = WINDOW_WIDE/SCALE
     RENDER_HIGH = WINDOW_HIGH/SCALE
 

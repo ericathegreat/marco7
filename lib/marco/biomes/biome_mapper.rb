@@ -36,6 +36,8 @@ module Biomes
 			seed_x = @random.rand(world_across)
 			seed_y = @random.rand(world_down)
 
+			return if world_map.cell_at(seed_x, seed_y).terrain_type != :undefined
+			
 			new_biome = ( biome_type.new(@random.rand, seed_x, seed_y, world_map) )
 			new_biome.install
 			@regions << new_biome
