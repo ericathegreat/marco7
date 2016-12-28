@@ -15,8 +15,8 @@ module HudStates
 			@entities.first
 		end
 
-		def show_interactions?
-			true
+		def to_sym
+			:EntitySelected
 		end
 
 	end

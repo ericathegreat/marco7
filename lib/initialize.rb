@@ -15,7 +15,7 @@ class Initialize
 		@registrations.each { |r| r.call(Registry.instance) }
 		@associations.each { |a| a.call(Registry.instance) }
 
-		Registry.instance.screens.values.each { |s| s.associate }
+		Registry.instance.views.values.each { |s| s.associate }
 	end
 
 	def register &block

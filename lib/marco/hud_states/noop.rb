@@ -5,8 +5,8 @@ module HudStates
 			[]
 		end
 
-		def show_interactions?
-			false
+		def to_sym
+			:Noop
 		end
 
 	end

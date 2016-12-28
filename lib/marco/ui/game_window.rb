@@ -5,7 +5,7 @@ module UI
   class GameWindow < Gosu::Window
   	WINDOW_WIDE = 960
   	WINDOW_HIGH = 640
-    SCALE = 0.05
+    SCALE = 1.0
     RENDER_WIDE = WINDOW_WIDE/SCALE
     RENDER_HIGH = WINDOW_HIGH/SCALE
 
@@ -19,19 +19,19 @@ module UI
     end
 
     def update
-      @screen = Registry.instance.screen :world
+      @screen = Registry.instance.view :world
       @screen.update(Gosu.milliseconds)
     end
 
     def draw
       @image.draw(0,0,0,WINDOW_WIDE, WINDOW_HIGH)
       scale(SCALE, SCALE) do
-        @screen = Registry.instance.screen :world
+        @screen = Registry.instance.view :world
         @screen.draw self
 
       end
 
-      @hud = Registry.instance.screen :hud
+      @hud = Registry.instance.view :hud
       @hud.draw
     end
 

@@ -23,7 +23,7 @@ class IsoInitializer < Initializer
 		registry.register_biome :meadow, Biomes::MeadowBiome
 		registry.register_biome :origin, Biomes::OriginBiome
 
-		registry.register_screen :world, UI::IsoScreen.new
+		registry.register_view :world, UI::IsoScreen.new
 	end
 
 	associate do |registry|

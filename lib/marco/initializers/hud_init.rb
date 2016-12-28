@@ -8,7 +8,7 @@ class HudInitializer < Initializer
 	register do |r|
 		puts "Initializing Hud"
 
-		r.register_screen :hud, UI::Hud.new
+		r.register_view :hud, UI::Hud.new
 
 		r.register_sprite :pie_menu_border, UI::Sprites::BorderSprite.new(
 			tl: Gosu::Image.new("img/hud/barHorizontal_blue_left.png", tileable: true).subimage(0, 0, 6, 6), # l/t/w/h
