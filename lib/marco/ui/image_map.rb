@@ -14,9 +14,5 @@ module UI
 		def interactions_under point
 			@zones.select{ |z| z.region.contains?(point) }.map(&:interaction).flatten
 		end
-
-		# def click(x,y)
-		# 	puts interactions_under(Point(x,y))
-		# end
 	end
 end

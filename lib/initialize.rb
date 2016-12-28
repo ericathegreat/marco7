@@ -13,9 +13,11 @@ class Initialize
 		end
 
 		@registrations.each { |r| r.call(Registry.instance) }
-		@associations.each { |a| a.call(Registry.instance) }
+		# @associations.each { |a| puts "#{a}"; a.call(Registry.instance) }
 
-		Registry.instance.views.values.each { |s| s.associate }
+		Registry.instance.views.values.each { |s| puts "Associating #{s}"; s.associate }
+
+		generate_world
 	end
 
 	def register &block
@@ -23,9 +25,18 @@ class Initialize
 		@registrations << block
 	end
 
-	def associate &block
-		@associations ||= Array.new
-		@associations << block
-	end
+	# def associate &block
+	# 	@associations ||= Array.new
+	# 	@associations << block
+	# end
 
+
+	def generate_world
+		world = Registry.instance.map :world
+
+		mapper = Biomes::BiomeMapper.new(250)
+
+		puts "Generating new world..."
+		mapper.build_world(world)
+	end
 end

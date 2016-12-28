@@ -2,6 +2,8 @@ require_relative "../initializer"
 require_relative "../ui/sprites/base_sprite"
 require_relative "../ui/sprites/border_sprite"
 require_relative "../ui/hud"
+require_relative "../ui/inventory"
+require_relative "../ui/pie_menu_view"
 require "gosu"
 
 class HudInitializer < Initializer
@@ -9,6 +11,8 @@ class HudInitializer < Initializer
 		puts "Initializing Hud"
 
 		r.register_view :hud, UI::Hud.new
+		r.register_view :inventory, UI::Inventory.new
+		r.register_view :pie_menu, UI::PieMenuView.new
 
 		r.register_sprite :pie_menu_border, UI::Sprites::BorderSprite.new(
 			tl: Gosu::Image.new("img/hud/barHorizontal_blue_left.png", tileable: true).subimage(0, 0, 6, 6), # l/t/w/h

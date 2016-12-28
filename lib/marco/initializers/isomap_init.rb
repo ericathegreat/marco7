@@ -25,14 +25,4 @@ class IsoInitializer < Initializer
 
 		registry.register_view :world, UI::IsoScreen.new
 	end
-
-	associate do |registry|
-		world = registry.map :world
-
-		mapper = Biomes::BiomeMapper.new(250)
-
-		puts "Generating new world..."
-		mapper.build_world(world)
-		#world.set_to_demo_world
-	end
 end

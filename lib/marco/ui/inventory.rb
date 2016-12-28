@@ -1,14 +1,18 @@
 module UI
 	class Inventory
 		
-		def initialize player, z = 4096
-			@player = player
-			@inventory_background = Registry.instance.sprite(:inventory_item_back)
+		def initialize z = 4096
 			@z = z
 		end
 
+		def associate
+			@inventory_background = Registry.instance.sprite(:inventory_item_back)
+			HudManager.instance.add_view self
+			@player = Player.instance
+		end
+
 		def draw
-			@player.inventory_max_size.times do |i|
+			Player.instance.inventory_max_size.times do |i|
 				x = 90 + 90*i
 				y = GameWindow::WINDOW_HIGH - 80
 				@inventory_background.screen_space_draw(x,y, 55, 55, @z)
