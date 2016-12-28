@@ -6,6 +6,10 @@ module Interactions
 			self.class.name
 		end
 
+		def queue player, entity
+			@fiber = interaction player, entity
+		end
+
 		def start(time)
 			@fiber.resume time
 		end

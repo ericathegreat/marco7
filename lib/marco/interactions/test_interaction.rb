@@ -10,8 +10,10 @@ module Interactions
 			@message
 		end
 
-		def execute player, entity
-			puts @message
+		def interaction player, entity
+			Fiber.new do |time|
+				puts @message
+			end
 		end
 	end
 end
