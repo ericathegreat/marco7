@@ -1,5 +1,4 @@
-require_relative '../../interactions/test_interaction'
-require_relative '../../interactions/chop_tree_interaction'
+require_relative '../../interactions/view_bunker_interaction'
 require_relative '../../world_space_aware'
 require_relative '../../multi_tile'
 
@@ -11,7 +10,7 @@ module Entities
 
 			def interactions
 				[
-					Interactions::TestInteraction.new("Do not click this button again")
+					Interactions::ViewBunkerInteraction.new
 				]
 			end
 

@@ -5,10 +5,12 @@ require_relative 'pathfinding'
 require_relative 'interaction_queue'
 require_relative 'hud_states/noop'
 require_relative 'hud_states/entity_selected'
+require_relative 'event_bus/event_publisher'
 
 class Player
 	include Singleton
 	include WorldSpaceAware
+	include EventBus::EventPublisher
 
 	attr_accessor :inventory, :inventory_max_size, :location_stack, :hud_state
 
@@ -25,6 +27,8 @@ class Player
 
 		@hud_state = HUD_NOOP
 		@pathfinder = Pathfinding.new(@world)
+
+		listen_to(:item_added_to_inventory)
 	end
 	
 	def render_state
@@ -34,6 +38,7 @@ class Player
 	def add_to_inventory item
 		return if @inventory_max_size <= @inventory.size
 		@inventory << item
+		publish_event(:item_added_to_inventory, type: item)
 	end
 
 	def interactions player
