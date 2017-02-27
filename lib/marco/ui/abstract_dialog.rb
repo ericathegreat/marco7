@@ -3,7 +3,7 @@ module UI
 		
 		def initialize z = 4096
 			@z = z
-			@font = Gosu::Font.new 10
+			@font = Gosu::Font.new 20, name: "#{__dir__}/../../../font/Xolonium-Regular.ttf"
 			@background = Registry.instance.sprite(:dialog_back)
 			@button = Registry.instance.sprite(:white_button_border)
 
@@ -30,7 +30,7 @@ module UI
 		def button (x, y, width, height, text, z, &block)
 			@button.screen_space_draw(x, y, width, height, z)
 
-			font_scale = 2
+			font_scale = 1
 			text_width = @font.text_width(text, font_scale)
 			@font.draw(text, 
 				x + width/2 - (text_width/2), y, z+1, 

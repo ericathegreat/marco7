@@ -8,8 +8,8 @@ module UI
 		def initialize z = 4096
 			@z = z
 			
-      @font = Gosu::Font.new 10
-			@font_scale = 2
+      @font = Gosu::Font.new 16, name: "#{__dir__}/../../../font/Xolonium-Regular.ttf"
+			@font_scale = 1
 
 			@border = Registry.instance.sprite(:pie_menu_border)
 		end
