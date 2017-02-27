@@ -27,8 +27,6 @@ class Player
 
 		@hud_state = HUD_NOOP
 		@pathfinder = Pathfinding.new(@world)
-
-		listen_to(:item_added_to_inventory)
 	end
 	
 	def render_state
