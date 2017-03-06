@@ -10,7 +10,7 @@ module Interactions
 				# path = player.find_path(entity.route_cell)
 				# wait_for_action Actions::FollowPathAction.new(player, path), time
 
-				dialog = UI::BunkerDialog.new
+				dialog = UI::BunkerDialog.new(entity)
 				dialog.show
 			end
 		end

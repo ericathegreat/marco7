@@ -8,6 +8,12 @@ module Entities
 			include WorldSpaceAware
 			include MultiTile
 
+			attr_accessor :inventory
+
+			def initialize
+				@inventory = []
+			end
+
 			def interactions
 				[
 					Interactions::ViewBunkerInteraction.new

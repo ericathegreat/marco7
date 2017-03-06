@@ -7,6 +7,9 @@ module UI
 			@background = Registry.instance.sprite(:dialog_back)
 			@button = Registry.instance.sprite(:white_button_border)
 
+			@enabled_color = 0xff_000000
+			@disabled_color = 0xff_999999
+
 			@clickable = Hash.new
 		end
 
@@ -27,16 +30,19 @@ module UI
 			HudManager.instance.remove_view self
 		end
 
-		def button (x, y, width, height, text, z, &block)
+		def button (x, y, width, height, text, z, enabled=true, &block)
 			@button.screen_space_draw(x, y, width, height, z)
 
 			font_scale = 1
 			text_width = @font.text_width(text, font_scale)
+
+			font_color = ( enabled ? @enabled_color : @disabled_color )
+
 			@font.draw(text, 
 				x + width/2 - (text_width/2), y, z+1, 
-				scale_x = font_scale, scale_y = font_scale, color = 0xff_000000) 
+				scale_x = font_scale, scale_y = font_scale, color = font_color) 
 			zone = box_polygon(x,y,width,height)
-			@clickable[zone] = block
+			@clickable[zone] = block if enabled
 		end
 
 		def click x, y
